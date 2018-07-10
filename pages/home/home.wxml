@@ -1,0 +1,6 @@
+<!--pages/home/home.wxml-->
+<view>
+  <!--轮播图  -->
+  <swiper></swiper>
+  <view>测试</view>
+</view>
