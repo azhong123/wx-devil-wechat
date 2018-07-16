@@ -11,13 +11,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.1.1",
 	"appid": "wx4625cdffea5307ff",
-<<<<<<< HEAD
-	"projectname": "wx-devil",
-=======
 	"projectname": "wx-devil-wechat",
->>>>>>> First commit
 	"isGameTourist": false,
 	"condition": {
 		"search": {
