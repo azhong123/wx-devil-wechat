@@ -1,17 +1,22 @@
-class Home{
-  constructor(){
-
+import {
+  Base
+} from '../../utils/base.js';
+class Home extends Base {
+  constructor() {
+    super();
   }
-  
-  getBannerData(bannerType){
-    wx.request({
-      url: 'http://127.0.0.1:8086/api/index/v1/banner/' + bannerType,
-      method : 'GET',
-      success : function(res){
-          console.log(res);
-          return res;
+
+  getBannerData(bannerType, callBack) {
+    var params = {
+      url: '/index/v1/banner/' + bannerType,
+      sCallBack: function(res) {
+        console.log(res);
+        callBack && callBack(res);
       }
-    })
+    };
+    this.request(params);
   }
 }
-export {Home};
+export {
+  Home
+};
