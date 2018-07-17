@@ -1,2 +1,14 @@
 <!--pages/theme/theme.wxml-->
-<text>pages/theme/theme.wxml</text>
+<import src="../tpls/products/products-tpl.wxml" />
+<view class="container">
+
+  <!--显示主题顶部图片  -->
+  <view class="theme-header">
+    <image mode="aspectFill" src="{{themeDetail.headImgUrl}}"></image>
+  </view>
+
+  <!--显示主题商品列表  -->
+  <view class="theme-main">
+    <template is="products" data="{{products:themeDetail.goodsListDTOS}}"></template>
+  </view>
+</view>
