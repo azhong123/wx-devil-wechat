@@ -42,10 +42,28 @@ Page({
 
     // 获取 latest 最新上新商品
     home.getLatestProducts((res) => {
-      console.log(res);
       this.setData({
         'productArr': res
       });
     });
+  },
+  /**
+   * 跳转 商品详情页
+   */
+  onProductsItemTap: function(event) {
+    var id = home.getDataSet(event, "id");
+    wx.navigateTo({
+      url: '../product/product?id=' + id,
+    })
+  },
+
+  /**
+   * 跳转活动详情页
+   */
+  onThemeItemTap: function(event) {
+    var id = home.getDataSet(event, "id");
+    wx.navigateTo({
+      url: '../theme/theme?id=' + id,
+    })
   }
 })

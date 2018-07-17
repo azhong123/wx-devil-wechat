@@ -35,6 +35,13 @@ class Base {
       }
     })
   }
+
+  /**
+   * 获取 页面跳转传递的值
+   */
+  getDataSet(event, key) {
+    return event.currentTarget.dataset[key];
+  };
 }
 export {
   Base

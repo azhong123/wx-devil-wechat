@@ -1,10 +1,10 @@
 <!--pages/home/home.wxml-->
-<import src="../tpls/products/products-tpl.wxml"/>
+<import src="../tpls/products/products-tpl.wxml" />
 <view class="container">
   <!--轮播图  -->
   <swiper indicator-dots="true" autoplay="true" class="swiper">
     <block wx:for="{{bannerArr}}" wx:key="id">
-      <swiper-item class="banner-item">
+      <swiper-item class="banner-item" data-id="{{item.keyWord}}" bindtap="onProductsItemTap">
         <!--对于不规则图片 添加 mode="aspectFill" -->
         <image mode="aspectFill" src="{{item.bannerUrl}}" class="item-image"></image>
       </swiper-item>
@@ -19,10 +19,10 @@
       <view class="theme-box">
         <block wx:for="{{themeArr}}" wx:key="id">
           <!-- 微信提供的逻辑判断 wx:if  -->
-          <view wx:if="{{index == 2}}" class="theme-item big">
+          <view wx:if="{{index == 2}}" class="theme-item big" data-id="{{item.id}}" bindtap="onThemeItemTap">
             <image mode="aspectFill" src="{{item.topicImgUrl}}"></image>
           </view>
-          <view wx:else class="theme-item">
+          <view wx:else class="theme-item" data-id="{{item.id}}" bindtap="onThemeItemTap">
             <image mode="aspectFill" src="{{item.topicImgUrl}}"></image>
           </view>
         </block>
