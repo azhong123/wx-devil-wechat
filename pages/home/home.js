@@ -62,8 +62,9 @@ Page({
    */
   onThemeItemTap: function(event) {
     var id = home.getDataSet(event, "id");
+    var name = home.getDataSet(event, "name");
     wx.navigateTo({
-      url: '../theme/theme?id=' + id,
+      url: '../theme/theme?id=' + id + '&name=' + name,
     })
   }
 })

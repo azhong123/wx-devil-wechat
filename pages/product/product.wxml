@@ -1,2 +1,21 @@
 <!--pages/product/product.wxml-->
-<text>pages/product/product.wxml</text>
+<view class='container'>
+  <!--商品详情参数  -->
+  <!--商品轮播图  -->
+  <swiper indicator-dots="true" class="detail-swiper">
+    <block wx:for="{{productDetail.mainImgUrls}}" wx:key="productDetail.goodsId">
+      <swiper-item class="detail-swiper-item">
+        <image mode="aspectFill" src="{{item}}" class="item-image"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view>
+
+  </view>
+  <!--商品详情图片  -->
+  <view>
+  </view>
+
+  <view>
+  </view>
+</view>

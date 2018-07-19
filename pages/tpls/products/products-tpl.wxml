@@ -3,7 +3,7 @@
   <view class="products-box">
 
     <block wx:for="{{products}}" wx:key="goodsId">
-      <view class="products-item" bindtap="onProductsItemTap">
+      <view class="products-item" bindtap="onProductsItemTap" data-id="{{item.goodsId}}">
         <image class="products-image" src="{{item.goodsMinImg}}"></image>
 
         <view class="products-item-bottom">

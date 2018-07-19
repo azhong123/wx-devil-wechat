@@ -1,1 +1,20 @@
 /* pages/product/product.wxss */
+
+.detail-swiper {
+  height: 450rpx;
+  width: 100%;
+}
+
+.detail-swiper-box {
+  overflow-x: hidden;
+}
+
+.detail-swiper-item {
+  height: 100%;
+  width: 100%;
+}
+
+.detail-swiper-item image {
+  height: 100%;
+  width: 100%;
+}

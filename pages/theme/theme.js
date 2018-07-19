@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    id: null,
+    name: null
   },
 
   /**
@@ -17,7 +18,14 @@ Page({
    */
   onLoad: function(options) {
     this.data.id = options.id;
+    this.data.name = options.name;
     this._loadData();
+  },
+
+  onReady: function() {
+    wx.setNavigationBarTitle({
+      title: this.data.name,
+    })
   },
 
   /**
@@ -25,6 +33,7 @@ Page({
    */
   _loadData: function() {
     theme.getThemeDetail(this.data.id, (res) => {
+      this.data.name = res.name;
       this.setData({
         "themeDetail": res
       });
