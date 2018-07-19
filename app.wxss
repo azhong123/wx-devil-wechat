@@ -11,3 +11,10 @@
   background-color: #fff;
   font-family: "Microsoft Yahei";
 }
+
+/*分割线  */
+.separate{
+  height: 15rpx;
+  width: 100%;
+  background-color: #fafafa;
+}

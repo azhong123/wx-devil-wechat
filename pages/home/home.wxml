@@ -2,7 +2,7 @@
 <import src="../tpls/products/products-tpl.wxml" />
 <view class="container">
   <!--轮播图  -->
-  <swiper indicator-dots="true" autoplay="true" class="swiper">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper">
     <block wx:for="{{bannerArr}}" wx:key="id">
       <swiper-item class="banner-item" data-id="{{item.keyWord}}" bindtap="onProductsItemTap">
         <!--对于不规则图片 添加 mode="aspectFill" -->
