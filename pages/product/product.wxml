@@ -1,4 +1,6 @@
 <!--pages/product/product.wxml-->
+<import src="../tpls/quantity/quantity-tpl.wxml" />
+
 <view class='container'>
   <!--商品轮播图  -->
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" duration="{{duration}}" class="detail-swiper">
@@ -14,7 +16,7 @@
       <view class='price'>￥{{productDetail.goodsPrice}}</view>
       <view class='title'>{{productDetail.goodsName}}</view>
     </view>
-    <view class="separate"></view>
+    <view class="separate-fine"></view>
     <!--商品数量和规格  -->
     <view class='product-attribute'>
       <view bindtap="toggleDialog" class='attribute-item'>
@@ -23,25 +25,52 @@
       </view>
 
     </view>
-    <view class="separate"></view>
+    <view class="separate-thick"></view>
 
     <!--商品评价  -->
     <view class='product-comment'>
       <view class='comment-title'>宝贝评价(200)</view>
       <view class='comment-content'>用力开发中~~~~~~~~~~</view>
     </view>
-    <view class="separate"></view>
+    <view class="separate-thick"></view>
 
     <!--商品详情图片和规格  -->
-
   </scroll-view>
+
   <!-- 底部悬浮栏 -->
   <view class="detail-nav">
-    <view class=''></view>
-    <image bindtap="toCar" src="../../imgs/icon/cart@top.png" />
-    <!-- <view class="line_nav"></view> -->
-    <image bindtap="addLike" src="../../imgs/icon/cart@top.png" />
+    <image bindtap="toCar" src="../../imgs/icon/cart1.png" />
+    <image bindtap="addLike" src="../../imgs/icon/enshrine.png" />
     <button class="button-add-cart" bindtap="addCar" formType="submit">加入购物车</button>
     <button class="button-buy-now" bindtap="buyNow" formType="submit">立即购买</button>
+  </view>
+
+  <!--加入购物车  -->
+
+  <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
+    <view class="dialog__mask" bindtap="toggleDialog" />
+    <view class="dialog__container">
+      <view class="row">
+        <image bindtap='closeDialog' class='image-close' src='../../imgs/icon/close.png'></image>
+        <!-- <icon bindtap="closeDialog" class="image-close" type="cancel" size="25" /> -->
+        <image class="image-sku" src="{{productDetail.goodsMinImg}}"></image>
+        <view class="column">
+          <text class="sku-price">￥{{productDetail.goodsPrice}}</text>
+          <text class="sku-title">{{productDetail.goodsName}}</text>
+        </view>
+      </view>
+      <view class="border-line"></view>
+      <view class="row">
+        <view>购买数量</view>
+        <view class="border-line">
+          <!-- <template is="quantity"  data="{{ ...item,index:index}}" />  -->
+          <template is="quantity" data="{{ ...goods,index:1}}" />
+        </view>
+      </view>
+      <text class="border-line"></text>
+      <button class="button-add-cart" bindtap="addCar" formType="submit">加入购物车</button>
+      <button class="button-buy-now" bindtap="buyNow" formType="submit">立即购买</button>
+      <!-- <button data-goodid="{{goods.goodsId}}" class="button-addCar" bindtap="addCar" formType="submit">确定</button> -->
+    </view>
   </view>
 </view>

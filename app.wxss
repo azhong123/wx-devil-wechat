@@ -5,16 +5,25 @@
   display: flex;
   /*默认列排布  */
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   box-sizing: border-box;
   background-color: #fff;
   font-family: "Microsoft Yahei";
 }
 
-/*分割线  */
-.separate{
+/*分割线粗线  */
+
+.separate-thick {
   height: 15rpx;
   width: 100%;
-  background-color: #fafafa;
+  background-color: #F0F0F0;
+}
+
+/*分割线细线  */
+
+.separate-fine {
+  height: 1rpx;
+  width: 100%;
+  background-color: #E6E6E6;
 }
