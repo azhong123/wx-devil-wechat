@@ -60,12 +60,10 @@
         </view>
       </view>
       <view class="border-line"></view>
+      <!--购买数量  -->
       <view class="row">
-        <view>购买数量</view>
-        <view class="border-line">
-          <!-- <template is="quantity"  data="{{ ...item,index:index}}" />  -->
-          <template is="quantity" data="{{ ...goods,index:1}}" />
-        </view>
+        <view class="buy-quantity">购买数量</view>
+        <template is="quantity" data="{{ ...goods,index:1}}" />
       </view>
       <text class="border-line"></text>
       <button class="button-add-cart" bindtap="addCar" formType="submit">加入购物车</button>
