@@ -57,7 +57,6 @@ Page({
     var id = home.getDataSet(event, "id");
     wx.navigateTo({
       url: '../product/product?id=' + id,
-      // url: '../detail/detail',
     })
   },
 

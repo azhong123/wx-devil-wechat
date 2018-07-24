@@ -3,7 +3,12 @@ import {
   Product
 } from 'product-model.js';
 var product = new Product;
+var goodsId = null;
+var goods = null;
 var imgUrls = [];
+var detailImg = [];
+var paramItems = [];
+var currentTabsIndex = null;
 Page({
 
   /**
@@ -12,7 +17,10 @@ Page({
   data: {
     isLike: false,
     showDialog: false,
-    // goods: null,
+    goods: null,
+    detailImg: [],
+    paramItems: [],
+    currentTabsIndex: 0,
     indicatorDots: true, //是否显示面板指示点
     autoplay: false, //是否自动切换
     duration: 1000, //  滑动动画时长1s
@@ -34,8 +42,17 @@ Page({
     product.getGoodsDetail(this.data.id, (res) => {
       console.log(res);
       this.data.imgUrls = res.mainImgUrls;
+      goods = {
+        count: 1,
+        goodsId: res.goodsId,
+        goodsName: res.goodsName,
+        goodsPrice: res.goodsPrice,
+        goodsMinImg: res.goodsMinImg,
+        mainImgUrls: this.data.imgUrls,
+        totalMoney: res.goodsPrice,
+      }
       this.setData({
-        'productDetail': res
+        goods: goods,
       });
     });
 
@@ -44,8 +61,9 @@ Page({
      */
     product.getGoodsDetailImg(this.data.id, (res) => {
       console.log(res);
+      this.data.goods.detailImg = res;
       this.setData({
-        'productImgs': res
+        goods: this.data.goods,
       });
     });
 
@@ -54,8 +72,9 @@ Page({
      */
     product.getGoodsParamItems(this.data.id, (res) => {
       console.log(res);
+      this.data.goods.paramItems = res;
       this.setData({
-        'productParamItems': res
+        goods: this.data.goods,
       });
     });
   },
@@ -85,34 +104,29 @@ Page({
    * sku 关闭
    */
   closeDialog: function() {
-    console.info("关闭");
     this.setData({
       showDialog: false
     });
   },
+
   /* 减数 */
   delCount: function(e) {
-    console.log("刚刚您点击了减1");
     var count = this.data.goods.count;
-    // 商品总数量-1
     if (count > 1) {
       this.data.goods.count--;
     }
-    // 将数值与状态写回  
     this.setData({
       goods: this.data.goods
     });
     this.priceCount();
   },
+
   /* 加数 */
   addCount: function(e) {
-    console.log("刚刚您点击了加1");
     var count = this.data.goods.count;
-    // 商品总数量-1  
-    if (count < 10) {
+    if (count < 100) {
       this.data.goods.count++;
     }
-    // 将数值与状态写回  
     this.setData({
       goods: this.data.goods
     });
@@ -120,11 +134,22 @@ Page({
   },
   //价格计算
   priceCount: function(e) {
-    this.data.goods.totalMoney = this.data.goods.price * this.data.goods.count;
+    this.data.goods.totalMoney = this.data.goods.goodsPrice * this.data.goods.count;
     this.setData({
       goods: this.data.goods
     })
   },
+
+  /**
+   * 商品详情选择
+   */
+  onTabsItemTap: function(res) {
+    this.data.currentTabsIndex = product.getDataSet(res, "index");
+    this.setData({
+      currentTabsIndex: this.data.currentTabsIndex
+    })
+  },
+
   /**
    * 加入购物车
    */
