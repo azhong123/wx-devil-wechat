@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "DEVIL"
+  "navigationBarTitleText": "DEVIL",
+  "enablePullDownRefresh": true
 }
