@@ -2,7 +2,12 @@
 import {
   Product
 } from 'product-model.js';
-var product = new Product;
+import {
+  Cart
+} from '../cart/cart-model.js';
+var product = new Product();
+var cart = new Cart();
+
 var goodsId = null;
 var goods = null;
 var imgUrls = [];
@@ -40,7 +45,6 @@ Page({
      * 获取商品详情信息
      */
     product.getGoodsDetail(this.data.id, (res) => {
-      console.log(res);
       this.data.imgUrls = res.mainImgUrls;
       goods = {
         count: 1,
@@ -60,7 +64,6 @@ Page({
      * 获取商品详情图片
      */
     product.getGoodsDetailImg(this.data.id, (res) => {
-      console.log(res);
       this.data.goods.detailImg = res;
       this.setData({
         goods: this.data.goods,
@@ -71,7 +74,6 @@ Page({
      * 获取商品详情参数
      */
     product.getGoodsParamItems(this.data.id, (res) => {
-      console.log(res);
       this.data.goods.paramItems = res;
       this.setData({
         goods: this.data.goods,
@@ -83,7 +85,6 @@ Page({
    * 图片放大预览
    */
   previewImage: function(res) {
-    console.log(res);
     var imgSrc = product.getDataSet(res, "src");
     console.log(imgSrc);
     wx.previewImage({
@@ -153,64 +154,27 @@ Page({
   /**
    * 加入购物车
    */
-  addCar: function(e) {
+  addToCart: function() {
     var goods = this.data.goods;
-    goods.isSelect = false;
-    var count = this.data.goods.count;
-
-    var title = this.data.goods.title;
-    if (title.length > 13) {
-      goods.title = title.substring(0, 13) + '...';
+    var cartObj = {
+      isChecked: 1,
+      goodsNum: goods.count,
+      goodsPrice: goods.totalMoney,
+      goodsId: goods.goodsId
     }
-
-    // 获取购物车的缓存数组（没有数据，则赋予一个空数组）  
-    var arr = wx.getStorageSync('cart') || [];
-    console.log("arr,{}", arr);
-    if (arr.length > 0) {
-      // 遍历购物车数组  
-      for (var j in arr) {
-        // 判断购物车内的item的id，和事件传递过来的id，是否相等  
-        if (arr[j].goodsId == goodsId) {
-          // 相等的话，给count+1（即再次添加入购物车，数量+1）  
-          arr[j].count = arr[j].count + 1;
-          // 最后，把购物车数据，存放入缓存（此处不用再给购物车数组push元素进去，因为这个是购物车有的，直接更新当前数组即可）  
-          try {
-            wx.setStorageSync('cart', arr)
-          } catch (e) {
-            console.log(e)
-          }
-          //关闭窗口
-          wx.showToast({
-            title: '加入购物车成功！',
-            icon: 'success',
-            duration: 2000
-          });
-          this.closeDialog();
-          // 返回（在if内使用return，跳出循环节约运算，节约性能） 
-          return;
-        }
-      }
-      // 遍历完购物车后，没有对应的item项，把goodslist的当前项放入购物车数组  
-      arr.push(goods);
-    } else {
-      arr.push(goods);
-    }
-    // 最后，把购物车数据，存放入缓存  
     try {
-      wx.setStorageSync('cart', arr)
-      // 返回（在if内使用return，跳出循环节约运算，节约性能） 
-      //关闭窗口
-      wx.showToast({
-        title: '加入购物车成功！',
-        icon: 'success',
-        duration: 2000
-      });
-      this.closeDialog();
-      return;
+      wx.setStorageSync('token', 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUjK0MDUwNDe0NDE00o0O8vdxjXd08fX001EAs0ODXYNilXSUMhNLlKwMTY2NTI2MjU0MgQIpQL6OUl5ibiqqIUDFqRUFYMXGhkYWhiaGtQAAAAD__w.0vxt4hL0GHWJrgQt-gXvCY2cnyloQTgl9ruu3ad29l4')
     } catch (e) {
       console.log(e)
     }
-
-
+    cart.addCart(cartObj, (res) => {
+      console.log(res)
+      wx.showToast({
+        title: '加入购物车成功！',
+        icon: 'success',
+        duration: 1500,
+      });
+      this.closeDialog();
+    });
   }
 })

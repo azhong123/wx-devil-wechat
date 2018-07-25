@@ -2,7 +2,7 @@
 import {
   Theme
 } from 'theme-model.js';
-var theme = new Theme;
+var theme = new Theme();
 Page({
 
   /**

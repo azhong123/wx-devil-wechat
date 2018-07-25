@@ -12,6 +12,7 @@ class Theme extends Base {
   getThemeDetail(id, callback) {
     var params = {
       url: "/index/v1/theme/one/" + id,
+      token: "",
       sCallback: function(res) {
         callback && callback(res);
       }

@@ -2,7 +2,7 @@
 import {
   Home
 } from 'home-model.js';
-var home = new Home;
+var home = new Home();
 Page({
 
   /**

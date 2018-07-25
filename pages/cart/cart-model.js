@@ -1,18 +1,21 @@
 import {
   Base
 } from '../../utils/base.js';
-class Category extends Base {
+
+class Cart extends Base {
   constructor() {
     super();
   }
 
   /**
-   * 获取所有的分类信息
+   * 加入购物车
    */
-  getCategoryType(callback) {
+  addCart(cart, callback) {
     var param = {
-      url: '/goods/v1/cate/all',
-      token: "",
+      url: '/shopping/v1/cart/add',
+      token: wx.getStorageSync('token'),
+      type: 'POST',
+      data: cart,
       sCallback: function(res) {
         callback && callback(res);
       }
@@ -21,12 +24,12 @@ class Category extends Base {
   }
 
   /**
-   * 获取分类下的商品
+   * 获取我的购物车数量
    */
-  getProductsByCategory(cateId, callback) {
+  getCartCount(callback) {
     var param = {
-      url: '/goods/v1/category?cateId=' + cateId,
-      token: "",
+      url: '/shopping/v1/cart/count',
+      token: wx.getStorageSync('token'),
       sCallback: function(res) {
         callback && callback(res);
       }
@@ -35,5 +38,5 @@ class Category extends Base {
   }
 }
 export {
-  Category
+  Cart
 };

@@ -2,7 +2,7 @@
 import {
   Category
 } from 'category-model.js';
-var category = new Category;
+var category = new Category();
 var categoryTypeArr = [];
 var currentMenuIndex = null;
 var categoryProducts = null;
@@ -30,14 +30,12 @@ Page({
    */
   _loadData: function() {
     category.getCategoryType((categoryData) => {
-      console.log(categoryData);
       this.setData({
         categoryTypeArr: categoryData,
       });
 
       // 默认加载第一个分类商品数据
       category.getProductsByCategory(categoryData[0].cateId, (res) => {
-        console.log(res);
         categoryProducts = {
           procucts: res,
           topImgUrl: categoryData[0].topicImgUrl,
@@ -65,7 +63,6 @@ Page({
        * 添加分类下的商品
        */
       category.getProductsByCategory(cateId, (data) => {
-        console.log(data);
         categoryProducts = {
           procucts: data,
           topImgUrl: this.data.categoryTypeArr[index].topicImgUrl,

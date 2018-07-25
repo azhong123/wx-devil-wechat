@@ -15,9 +15,9 @@ class Base {
       params.type = 'GET';
     }
 
-    if (!wx.getStorageSync('token')) {
-      params.token = '';
-    }
+    // if (!wx.getStorageSync('token')) {
+    //   params.token = '';
+    // }
     wx.request({
       url: url,
       data: params.data,
@@ -25,7 +25,7 @@ class Base {
       header: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
-        'Authorization': 'Bearer ' + wx.getStorageSync('token')
+        'Authorization': 'Bearer ' + params.token
       },
       success: function(res) {
         params.sCallback && params.sCallback(res.data.data);

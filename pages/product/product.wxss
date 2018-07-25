@@ -82,7 +82,7 @@
 /*商品详情*/
 
 .detail-bottom-box {
-  margin-top: 30rpx;
+  margin-top: 5rpx;
 }
 
 .tabs-box {
@@ -167,6 +167,57 @@
   border-top: 1px solid #e6e6e6;
 }
 
+
+/* .detail-nav image {
+  width: 70rpx;
+  height: 50rpx;
+  margin: 20rpx 40rpx;
+} */
+
+.nav-toCar{
+  height: 90rpx;
+    /* min-height:90rpx; */
+  width: 20%;
+  /* border-radius: 10rpx; */
+  /* margin-right: 0; */
+  /* margin-bottom: 10rpx; */
+  background-color: rgb(43, 211, 43);
+  text-align: center;
+}
+.nav-toCar image{
+width: 30rpx;
+  height: 30rpx;
+}
+
+.nav-toCar .nav-name{
+ font-size: 12rpx;
+}
+
+.nav-like{
+    height: 90rpx;
+    /* min-height:90rpx; */
+  width: 20%;
+  /* border-radius: 10rpx; */
+  /* margin-right: 0; */
+  /* margin-bottom: 10rpx; */
+  background-color: rgb(25, 41, 185);
+  text-align: center;
+}
+
+.nav-like image{
+width: 30rpx;
+  height: 30rpx;
+}
+
+.nav-like .nav-name{
+ font-size: 12rpx;
+}
+
+.nav-but{
+  width: 60%;
+  background-color: rgb(133, 22, 22);
+}
+
 button {
   text-align: center;
   text-decoration: none;
@@ -201,12 +252,6 @@ button {
 
 .button-buy-now::after {
   border: none;
-}
-
-.detail-nav image {
-  width: 70rpx;
-  height: 50rpx;
-  margin: 20rpx 40rpx;
 }
 
 /* sku选择 */

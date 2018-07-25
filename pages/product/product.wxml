@@ -69,10 +69,19 @@
 
   <!-- 底部悬浮栏 -->
   <view class="detail-nav">
-    <image bindtap="toCar" src="../../imgs/icon/cart1.png" />
-    <image bindtap="addLike" src="../../imgs/icon/enshrine.png" />
-    <button class="button-add-cart" bindtap="toggleDialog" formType="submit">加入购物车</button>
-    <button class="button-buy-now" bindtap="buyNow" formType="submit">立即购买</button>
+    <view class="nav-toCar">
+      <image bindtap="toCar" src="../../imgs/icon/cart1.png" />
+      <view class="nav-name">购物车</view>
+    </view>
+    <view class="nav-like">
+      <image bindtap="addLike" src="../../imgs/icon/enshrine.png" />
+      <view class="nav-name">收藏</view>
+    </view>
+    <view class="nav-but">
+      <button class="button-add-cart" bindtap="toggleDialog" formType="submit">加入购物车</button>
+      <button class="button-buy-now" bindtap="buyNow" formType="submit">立即购买</button>
+    </view>
+
   </view>
 
   <!--加入购物车  -->
@@ -99,7 +108,7 @@
       </view>
       <view class="border-line"></view>
       <view class="check-button">
-        <button class="check-button-add-cart" bindtap="addCar" formType="submit">加入购物车</button>
+        <button class="check-button-add-cart" bindtap="addToCart" formType="submit">加入购物车</button>
         <button class="check-button-buy-now" bindtap="buyNow" formType="submit">立即购买</button>
       </view>
 

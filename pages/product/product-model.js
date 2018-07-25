@@ -12,6 +12,7 @@ class Product extends Base {
   getGoodsDetail(id, callback) {
     var params = {
       url: '/goods/v1/detail/' + id,
+      token: "",
       sCallback: function(res) {
         callback && callback(res);
       }
@@ -25,6 +26,7 @@ class Product extends Base {
   getGoodsDetailImg(id, callback) {
     var params = {
       url: '/goods/v1/img/' + id,
+      token: "",
       sCallback: function(res) {
         callback && callback(res);
       }
@@ -38,6 +40,7 @@ class Product extends Base {
   getGoodsParamItems(id, callback) {
     var params = {
       url: '/goods/v1/param/' + id,
+      token: "",
       sCallback: function(res) {
         callback && callback(res);
       }

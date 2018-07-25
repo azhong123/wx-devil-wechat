@@ -1,6 +1,7 @@
 import {
   Base
 } from '../../utils/base.js';
+var token = '';
 class Home extends Base {
   constructor() {
     super();
@@ -12,6 +13,7 @@ class Home extends Base {
   getBannerData(bannerType, callback) {
     var params = {
       url: '/index/v1/banner/' + bannerType,
+      token: "",
       sCallback: function(res) {
         callback && callback(res);
       }
@@ -25,6 +27,7 @@ class Home extends Base {
   getThemeData(themeType, callback) {
     var params = {
       url: '/index/v1/theme/list/' + themeType,
+      token: "",
       sCallback: function(res) {
         callback && callback(res);
       }
@@ -38,6 +41,7 @@ class Home extends Base {
   getLatestProducts(callback) {
     var params = {
       url: '/goods/v1/goods/latest',
+      token: "",
       sCallback: function(res) {
         callback && callback(res);
       }
