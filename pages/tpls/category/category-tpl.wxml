@@ -7,10 +7,10 @@
       <text>{{categoryInfo.title}}</text>
     </view>
     <view class="category-main">
-      <block wx:for="{{categoryInfo.procucts}}">
-        <view class="category-goods-items {{index%3==1?'middle':''}}" data-id="{{item.id}}" bindtap="onProductsItemTap">
-          <image src="{{item.main_img_url}}" mode="aspectFill"></image>
-          <view>{{item.name}}</view>
+      <block wx:for="{{categoryInfo.procucts}}" wx:key="{{index}}">
+        <view class="category-goods-items {{index%3==1?'middle':''}}" data-id="{{item.goodsId}}" bindtap="onProductsItemTap">
+          <image src="{{item.goodsMinImg}}" mode="aspectFill"></image>
+          <view>{{item.goodsSubtitle}}</view>
         </view>
       </block>
     </view>

@@ -1,66 +1,105 @@
 // pages/category/category.js
+import {
+  Category
+} from 'category-model.js';
+var category = new Category;
+var categoryTypeArr = [];
+var currentMenuIndex = null;
+var categoryProducts = null;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    currentMenuIndex: 0,
+    categoryTypeArr: [],
+    categoryProducts: null,
+    loadedData: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
+  onLoad: function(options) {
+    this._loadData();
+  },
+  /**
+   * 加载分类数据
+   */
+  _loadData: function() {
+    category.getCategoryType((categoryData) => {
+      console.log(categoryData);
+      this.setData({
+        categoryTypeArr: categoryData,
+      });
+
+      // 默认加载第一个分类商品数据
+      category.getProductsByCategory(categoryData[0].cateId, (res) => {
+        console.log(res);
+        categoryProducts = {
+          procucts: res,
+          topImgUrl: categoryData[0].topicImgUrl,
+          title: categoryData[0].name
+        };
+        this.setData({
+          categoryProducts: categoryProducts,
+        });
+        this.data.loadedData[0] = categoryProducts;
+      });
+    });
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 加载 分类商品数据
    */
-  onReady: function () {
-  
+  changeCategory: function(res) {
+    var index = category.getDataSet(res, 'index'),
+      cateId = category.getDataSet(res, 'cateid')
+    this.setData({
+      currentMenuIndex: index
+    });
+    if (!this.isLoadedData(index)) {
+      /**
+       * 添加分类下的商品
+       */
+      category.getProductsByCategory(cateId, (data) => {
+        console.log(data);
+        categoryProducts = {
+          procucts: data,
+          topImgUrl: this.data.categoryTypeArr[index].topicImgUrl,
+          title: this.data.categoryTypeArr[index].name
+        };
+        this.setData({
+          categoryProducts: categoryProducts
+        });
+        this.data.loadedData[index] = categoryProducts;
+      });
+    } else {
+      this.setData({
+        categoryProducts: this.data.loadedData[index]
+      });
+    }
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 判断分类及分类商品是否加载过
    */
-  onShow: function () {
-  
+  isLoadedData: function(index) {
+    if (this.data.loadedData[index]) {
+      return true;
+    }
+    return false;
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * 跳转 商品详情页
    */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  onProductsItemTap: function(event) {
+    var id = category.getDataSet(event, "id");
+    wx.navigateTo({
+      url: '../product/product?id=' + id,
+    })
   }
 })

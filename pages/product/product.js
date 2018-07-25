@@ -18,8 +18,8 @@ Page({
     isLike: false,
     showDialog: false,
     goods: null,
-    detailImg: [],
-    paramItems: [],
+    detailImg: {},
+    paramItems: {},
     currentTabsIndex: 0,
     indicatorDots: true, //是否显示面板指示点
     autoplay: false, //是否自动切换

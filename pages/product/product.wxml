@@ -91,7 +91,7 @@
       <view class="border-line"></view>
       <!--购买数量  -->
       <view class="row">
-        <view class="buy-quantity">购买数量</view>
+        <view class="buy-quantity">数量</view>
         <view class="quantity-position">
           <template is="quantity" data="{{...goods,index:1}}" />
 

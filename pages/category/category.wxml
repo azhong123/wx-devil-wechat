@@ -1,2 +1,17 @@
 <!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<import src="../tpls/category/category-tpl.wxml" />
+<view class="container">
+  <view class="category-box">
+    <!-- 分类的左边数据 -->
+    <view class="left-box">
+      <block wx:for="{{categoryTypeArr}}" wx:key="index">
+        <view class="menu-item {{currentMenuIndex == index ? 'selected' : ''}}" data-cateId="{{item.cateId}}" data-index="{{index}}" bindtap="changeCategory">{{item.name}}</view>
+      </block>
+    </view>
+
+<!-- 分类的右边数据 -->
+    <view class="right-box">
+      <template is="categorydetail" data="{{categoryInfo:categoryProducts}}"></template>
+    </view>
+  </view>
+</view>
