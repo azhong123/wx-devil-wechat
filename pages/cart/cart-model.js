@@ -32,7 +32,6 @@ class Cart extends Base {
       url: '/shopping/v1/cart/count',
       token: wx.getStorageSync('token'),
       sCallback: function(res) {
-        console.log(res)
         callback && callback(res);
       }
     };
@@ -47,9 +46,7 @@ class Cart extends Base {
       url: '/shopping/v1/cart/list',
       token: wx.getStorageSync('token'),
       sCallback: function(res) {
-        // 将数据放入缓存中
-        wx.setStorageSync(this._storageKeyName, res);
-        // callback && callback(res);
+        callback && callback(res);
       }
     };
     this.request(param);

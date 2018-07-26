@@ -25,7 +25,7 @@ class Base {
       header: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
-        'Authorization': 'Bearer ' + params.token
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUjK0MDUwNDe0NDE00o0O8vdxjXd08fX001EAs0ODXYNilXSUMhNLlKwMTY2NTI2MjU0MgQIpQL6OUl5ibiqqIUDFqRUFYMXGhkYWhiaGtQAAAAD__w.0vxt4hL0GHWJrgQt-gXvCY2cnyloQTgl9ruu3ad29l4'
       },
       success: function(res) {
         params.sCallback && params.sCallback(res.data.data);

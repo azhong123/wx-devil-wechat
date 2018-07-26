@@ -1,8 +1,8 @@
 <!--pages/cart/cart.wxml-->
 <view class="container cart-container">
-  <block wx:if="{{cartData.length > 0}}">
+  <block wx:if="{{cartData.length > 0}}" wx:key="{{index}}">
     <view class="cart-box">
-      <block wx:for="{{cartData}}">
+      <block wx:for="{{cartData}}" wx:key="{{index}}">
 
         <view class="cart-item">
           <view class="cart-item-main">

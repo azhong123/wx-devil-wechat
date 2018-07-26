@@ -139,11 +139,6 @@ Page({
       goodsPrice: goods.totalMoney,
       goodsId: goods.goodsId
     }
-    try {
-      wx.setStorageSync('token', 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUjK0MDUwNDe0NDE00o0O8vdxjXd08fX001EAs0ODXYNilXSUMhNLlKwMTY2NTI2MjU0MgQIpQL6OUl5ibiqqIUDFqRUFYMXGhkYWhiaGtQAAAAD__w.0vxt4hL0GHWJrgQt-gXvCY2cnyloQTgl9ruu3ad29l4')
-    } catch (e) {
-      console.log(e)
-    }
     cart.addCart(cartObj, (res) => {
       wx.showToast({
         title: '加入购物车成功！',

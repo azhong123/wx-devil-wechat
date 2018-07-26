@@ -11,6 +11,7 @@ var account = 0;
 var selectedCounts = 0;
 // 购买商品种类的总数
 var selectedTypeCounts = 0;
+var storageKeyName = 'cart';
 Page({
 
   /**
@@ -21,14 +22,15 @@ Page({
     len: 0,
     account: 0,
     selectedCounts: 0,
-    selectedTypeCounts: 0
+    selectedTypeCounts: 0,
+    storageKeyName: 'cart'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this._loadData();
   },
 
   /**
@@ -42,6 +44,10 @@ Page({
    * 获取当前用户的所有购物车信息
    */
   _loadData: function() {
+    cart.getAllShoppingCart((res) => {
+      // 将数据放入缓存中
+      wx.setStorageSync(this.data.storageKeyName, res);
+    });
     var cartData = cart.getCartDataFromLocal();
     // 计算选择的数量及商品价格
     var cal = this._calcTotalAccountAndCounts(cartData);
@@ -106,16 +112,16 @@ Page({
    * 更新缓存中的购物车商品数量
    */
   changeCounts: function(event) {
-    var id = cart.getDataSet(event, 'shoppingCartid'),
+    var shoppingcartid = cart.getDataSet(event, 'shoppingcartid'),
       type = cart.getDataSet(event, 'type'),
-      index = this._getProductIndexById(id),
+      index = this._getProductIndexById(shoppingcartid),
       counts = 1;
 
     if (type == 'add') {
-      cart.addCounts(id);
+      cart.addCounts(shoppingcartid);
     } else {
       counts = -1;
-      cart.cutCounts(id);
+      cart.cutCounts(shoppingcartid);
     }
 
     this.data.cartData[index].goodsNum += counts;
