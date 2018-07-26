@@ -14,6 +14,8 @@ var imgUrls = [];
 var detailImg = [];
 var paramItems = [];
 var currentTabsIndex = null;
+var checkIndex = null;
+var dialogIndex = null;
 Page({
 
   /**
@@ -23,9 +25,11 @@ Page({
     isLike: false,
     showDialog: false,
     goods: null,
-    detailImg: {},
-    paramItems: {},
+    detailImg: [],
+    paramItems: [],
     currentTabsIndex: 0,
+    checkIndex: 0,
+    dialogIndex: 0,
     indicatorDots: true, //是否显示面板指示点
     autoplay: false, //是否自动切换
     duration: 1000, //  滑动动画时长1s
@@ -64,9 +68,9 @@ Page({
      * 获取商品详情图片
      */
     product.getGoodsDetailImg(this.data.id, (res) => {
-      this.data.goods.detailImg = res;
+      this.data.detailImg = res;
       this.setData({
-        goods: this.data.goods,
+        detailImg: this.data.detailImg,
       });
     });
 
@@ -74,7 +78,83 @@ Page({
      * 获取商品详情参数
      */
     product.getGoodsParamItems(this.data.id, (res) => {
-      this.data.goods.paramItems = res;
+      this.data.paramItems = res;
+      this.setData({
+        paramItems: this.data.paramItems,
+      });
+    });
+
+    /**
+     * 获取当前用户的购物车数量
+     */
+    cart.getCartCount((res) => {
+      this.data.cartTotalCounts = res.cartCount
+      this.setData({
+        cartTotalCounts: this.data.cartTotalCounts,
+      });
+    });
+
+  },
+
+  /**
+   * 商品详情选择
+   */
+  onTabsItemTap: function(res) {
+    this.data.currentTabsIndex = product.getDataSet(res, "index");
+    this.setData({
+      currentTabsIndex: this.data.currentTabsIndex
+    })
+  },
+
+  /**
+   * 是否显示选择的规格及数量
+   */
+  addDetailSku: function(res) {
+    this.data.checkIndex = product.getDataSet(res, "checkindex");
+    this.setData({
+      checkIndex: this.data.checkIndex
+    })
+  },
+
+  /**
+   * 跳转到购物车页面
+   */
+  toCar: function() {
+    wx.switchTab({
+      url: '/pages/cart/cart'
+    })
+  },
+
+  /**
+   * 加入购物车
+   */
+  addToCart: function(event) {
+    var goods = this.data.goods;
+    var cartObj = {
+      isChecked: 1,
+      goodsNum: goods.count,
+      goodsPrice: goods.totalMoney,
+      goodsId: goods.goodsId
+    }
+    try {
+      wx.setStorageSync('token', 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUjK0MDUwNDe0NDE00o0O8vdxjXd08fX001EAs0ODXYNilXSUMhNLlKwMTY2NTI2MjU0MgQIpQL6OUl5ibiqqIUDFqRUFYMXGhkYWhiaGtQAAAAD__w.0vxt4hL0GHWJrgQt-gXvCY2cnyloQTgl9ruu3ad29l4')
+    } catch (e) {
+      console.log(e)
+    }
+    cart.addCart(cartObj, (res) => {
+      wx.showToast({
+        title: '加入购物车成功！',
+        icon: 'success',
+        duration: 1500,
+      });
+      // 关闭规则选择页
+      this.closeDialog();
+
+      // 添加选择的规格及数量
+      this.addDetailSku(event);
+
+      // 添加购买数量
+      this.data.goods.cartTotalCounts = cartObj.goodsNum + this.data.goods.cartTotalCounts
       this.setData({
         goods: this.data.goods,
       });
@@ -96,8 +176,10 @@ Page({
   /**
    * sku 弹出
    */
-  toggleDialog: function() {
+  toggleDialog: function(res) {
+    var dialogIndex = product.getDataSet(res, "index");
     this.setData({
+      dialogIndex: dialogIndex,
       showDialog: !this.data.showDialog
     });
   },
@@ -139,42 +221,5 @@ Page({
     this.setData({
       goods: this.data.goods
     })
-  },
-
-  /**
-   * 商品详情选择
-   */
-  onTabsItemTap: function(res) {
-    this.data.currentTabsIndex = product.getDataSet(res, "index");
-    this.setData({
-      currentTabsIndex: this.data.currentTabsIndex
-    })
-  },
-
-  /**
-   * 加入购物车
-   */
-  addToCart: function() {
-    var goods = this.data.goods;
-    var cartObj = {
-      isChecked: 1,
-      goodsNum: goods.count,
-      goodsPrice: goods.totalMoney,
-      goodsId: goods.goodsId
-    }
-    try {
-      wx.setStorageSync('token', 'eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUjK0MDUwNDe0NDE00o0O8vdxjXd08fX001EAs0ODXYNilXSUMhNLlKwMTY2NTI2MjU0MgQIpQL6OUl5ibiqqIUDFqRUFYMXGhkYWhiaGtQAAAAD__w.0vxt4hL0GHWJrgQt-gXvCY2cnyloQTgl9ruu3ad29l4')
-    } catch (e) {
-      console.log(e)
-    }
-    cart.addCart(cartObj, (res) => {
-      console.log(res)
-      wx.showToast({
-        title: '加入购物车成功！',
-        icon: 'success',
-        duration: 1500,
-      });
-      this.closeDialog();
-    });
   }
 })

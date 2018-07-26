@@ -19,9 +19,10 @@
     <view class="separate-fine"></view>
     <!--商品数量和规格  -->
     <view class='product-attribute'>
-      <view bindtap="toggleDialog" class='attribute-item'>
+      <view bindtap="toggleDialog" class='attribute-item' data-index="1">
         <view class='name'>规格</view>
-        <view class='detail'>选择商品规格,购买数量</view>
+        <view class='detail' hidden="{{checkIndex == 1}}">选择商品规格,数量</view>
+        <view class='detail' hidden="{{checkIndex != 1}}">已选商品规格:"" , 数量:"{{goods.count}}"</view>
       </view>
 
     </view>
@@ -46,14 +47,14 @@
 
       <view class="product-detail-box">
         <view hidden="{{currentTabsIndex!=0}}">
-          <block wx:for="{{goods.detailImg}}" wx:key="{{index}}">
+          <block wx:for="{{detailImg}}" wx:key="{{index}}">
             <view class="product-detail-imgs">
               <image mode="aspectFill" src="{{item.goodsUrl}}"></image>
             </view>
           </block>
         </view>
         <view class="product-detail-properties" hidden="{{currentTabsIndex!=1}}">
-          <block wx:for="{{goods.paramItems}}" wx:key="index">
+          <block wx:for="{{paramItems}}" wx:key="index">
             <view class="properties-item">
               <view class="properties-name">{{item.paramName}}</view>
               <view class="properties-detail">{{item.paramValue}}</view>
@@ -70,7 +71,8 @@
   <!-- 底部悬浮栏 -->
   <view class="detail-nav">
     <view class="nav-toCar">
-      <image bindtap="toCar" src="../../imgs/icon/cart1.png" />
+      <image bindtap="toCar" src="../../imgs/icon/mycart.png" />
+      <view class="nav-num" wx:if="{{cartTotalCounts > 0}}">{{cartTotalCounts}}</view>
       <view class="nav-name">购物车</view>
     </view>
     <view class="nav-like">
@@ -78,7 +80,7 @@
       <view class="nav-name">收藏</view>
     </view>
     <view class="nav-but">
-      <button class="button-add-cart" bindtap="toggleDialog" formType="submit">加入购物车</button>
+      <button class="button-add-cart" bindtap="toggleDialog" data-index="2" formType="submit">加入购物车</button>
       <button class="button-buy-now" bindtap="buyNow" formType="submit">立即购买</button>
     </view>
 
@@ -87,7 +89,7 @@
   <!--加入购物车  -->
 
   <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
-    <view class="dialog__mask" bindtap="toggleDialog" />
+    <view class="dialog__mask" bindtap="toggleDialog" data-index="0" />
     <view class="dialog__container">
       <view class="row">
         <image bindtap='closeDialog' class='image-close' src='../../imgs/icon/close.png'></image>
@@ -107,8 +109,11 @@
         </view>
       </view>
       <view class="border-line"></view>
-      <view class="check-button">
-        <button class="check-button-add-cart" bindtap="addToCart" formType="submit">加入购物车</button>
+      <view class="check-button" hidden="{{dialogIndex != 2}}">
+        <button class="check-button-submit" bindtap="addToCart" data-checkIndex="1">确定</button>
+      </view>
+      <view class="check-button" hidden="{{dialogIndex != 1}}">
+        <button class="check-button-add-cart" bindtap="addToCart" formType="submit" data-checkIndex="1">加入购物车</button>
         <button class="check-button-buy-now" bindtap="buyNow" formType="submit">立即购买</button>
       </view>
 

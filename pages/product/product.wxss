@@ -104,9 +104,9 @@
 
 .tabs-item.selected {
   /*color: #AB956D;*/
-  color:   #ab956d;
+  color: #ab956d;
   /*border-bottom: 2px solid #AB956D;*/
-  border-bottom: 2px solid  #ab956d;
+  border-bottom: 2px solid #ab956d;
 }
 
 .product-detail-box {
@@ -167,62 +167,56 @@
   border-top: 1px solid #e6e6e6;
 }
 
+.detail-nav image {
+  width: 45rpx;
+  height: 45rpx;
+}
 
-/* .detail-nav image {
-  width: 70rpx;
-  height: 50rpx;
-  margin: 20rpx 40rpx;
-} */
+.detail-nav .nav-name {
+  color: #454552;
+  margin-top: -9rpx;
+  font-size: 23rpx;
+}
 
-.nav-toCar{
+.nav-toCar {
+  margin-top: 12rpx;
   height: 90rpx;
-    /* min-height:90rpx; */
   width: 20%;
-  /* border-radius: 10rpx; */
-  /* margin-right: 0; */
-  /* margin-bottom: 10rpx; */
-  background-color: rgb(43, 211, 43);
-  text-align: center;
-}
-.nav-toCar image{
-width: 30rpx;
-  height: 30rpx;
-}
-
-.nav-toCar .nav-name{
- font-size: 12rpx;
-}
-
-.nav-like{
-    height: 90rpx;
-    /* min-height:90rpx; */
-  width: 20%;
-  /* border-radius: 10rpx; */
-  /* margin-right: 0; */
-  /* margin-bottom: 10rpx; */
-  background-color: rgb(25, 41, 185);
   text-align: center;
 }
 
-.nav-like image{
-width: 30rpx;
-  height: 30rpx;
+.nav-toCar .nav-num {
+  margin-top: 3rpx;
+  font-size: 16rpx;
+  background-color: #ab956d;
+  color: white;
+  position: absolute;
+  left: 80rpx;
+  top: 0rpx;
+  height: 28rpx;
+  width: 28rpx;
+  line-height: 28rpx;
+  border-radius: 28rpx;
+  text-align: center;
 }
 
-.nav-like .nav-name{
- font-size: 12rpx;
+.nav-like {
+  margin-top: 12rpx;
+  height: 90rpx;
+  width: 10%;
+  text-align: center;
 }
 
-.nav-but{
-  width: 60%;
-  background-color: rgb(133, 22, 22);
+.nav-but {
+  margin-top: 8rpx;
+  margin-left: 25rpx;
+  width: 65%;
 }
 
 button {
   text-align: center;
   text-decoration: none;
   color: white;
-  /* padding-top: 2px; */
   display: inline-block;
   font-size: 30rpx;
   overflow: hidden;
@@ -232,11 +226,20 @@ button {
   line-height: 78rpx;
 }
 
+.check-button-submit {
+  margin-left: 10px;
+  border-radius: 50px;
+  background-color: #bfa880;
+  width: 94%;
+}
+
 .button-add-cart {
+  margin-left: 8px;
   border-radius: 0px;
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
   background-color: #bfa880;
+  width: 48%;
 }
 
 .button-buy-now {
@@ -244,6 +247,7 @@ button {
   border-bottom-right-radius: 50px;
   border-top-right-radius: 50px;
   background-color: #ab956d;
+  width: 48%;
 }
 
 .button-add-cart::after {
