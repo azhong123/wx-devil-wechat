@@ -14,6 +14,7 @@ var imgUrls = [];
 var detailImg = [];
 var paramItems = [];
 var currentTabsIndex = null;
+var cartTotalCounts = 0;
 var checkIndex = null;
 var dialogIndex = null;
 Page({
@@ -30,6 +31,7 @@ Page({
     currentTabsIndex: 0,
     checkIndex: 0,
     dialogIndex: 0,
+    cartTotalCounts: 0,
     indicatorDots: true, //是否显示面板指示点
     autoplay: false, //是否自动切换
     duration: 1000, //  滑动动画时长1s
@@ -89,6 +91,7 @@ Page({
      */
     cart.getCartCount((res) => {
       this.data.cartTotalCounts = res.cartCount
+      console.log(res.cartCount)
       this.setData({
         cartTotalCounts: this.data.cartTotalCounts,
       });
@@ -154,9 +157,9 @@ Page({
       this.addDetailSku(event);
 
       // 添加购买数量
-      this.data.goods.cartTotalCounts = cartObj.goodsNum + this.data.goods.cartTotalCounts
+      this.data.cartTotalCounts = cartObj.goodsNum + this.data.cartTotalCounts
       this.setData({
-        goods: this.data.goods,
+        cartTotalCounts: this.data.cartTotalCounts,
       });
     });
   },

@@ -5,6 +5,7 @@ import {
 class Cart extends Base {
   constructor() {
     super();
+    this._storageKeyName = 'cart';
   }
 
   /**
@@ -31,11 +32,109 @@ class Cart extends Base {
       url: '/shopping/v1/cart/count',
       token: wx.getStorageSync('token'),
       sCallback: function(res) {
+        console.log(res)
         callback && callback(res);
       }
     };
     this.request(param);
   }
+
+  /**
+   * 获取当前用户的全部购物车信息
+   */
+  getAllShoppingCart(callback) {
+    var param = {
+      url: '/shopping/v1/cart/list',
+      token: wx.getStorageSync('token'),
+      sCallback: function(res) {
+        // 将数据放入缓存中
+        wx.setStorageSync(this._storageKeyName, res);
+        // callback && callback(res);
+      }
+    };
+    this.request(param);
+  }
+
+  /**
+   * 获取缓存中的购物车信息
+   */
+  getCartDataFromLocal() {
+    var cartData = wx.getStorageSync(this._storageKeyName);
+    if (!cartData) {
+      cartData = [];
+    }
+    return cartData;
+  }
+
+  /**
+   * 判断所选商品是否存在购物中
+   */
+  _isHasThatOne(shaoppingId, cartData) {
+    var item = {},
+      result = {
+        index: -1
+      };
+    for (let i = 0; i < cartData.length; i++) {
+      item = cartData[i];
+      if (item.shoppingCartId == shaoppingId) {
+        result = {
+          index: i,
+          data: item
+        };
+        break;
+      }
+    }
+    return result;
+  }
+
+  /**
+   * 修改购物车商品数量
+   */
+  _changeCounts(shoppingId, count) {
+    var cartData = this.getCartDataFromLocal,
+      hasInfo = this._isHasThatOne(shoppingId, cartData);
+    if (hasInfo.index != -1) {
+      if (hasInfo.data.goodsNum > 1) {
+        cartData[hasInfo.index].goodsNum += count;
+      }
+    }
+    //更新本地缓存
+    wx.setStorageSync(this._storageKeyName, cartData);
+  }
+
+  /**
+   * 增加商品数目
+   */
+  addCounts(id) {
+    this._changeCounts(id, 1);
+  }
+
+  /**
+   * 购物车减
+   */
+  cutCounts(id) {
+    this._changeCounts(id, -1);
+  }
+
+  /**
+   * 删除缓存中的购物车信息
+   */
+  delete(ids) {
+    if (!(ids instanceof Array)) {
+      ids = [ids];
+    }
+    var cartData = this.getCartDataFromLocal();
+    for (let i = 0; i < ids.length; i++) {
+      var hasInfo = this._isHasThatOne(ids[i], cartData);
+      if (hasInfo.index != -1) {
+        cartData.splice(hasInfo.index, 1); //删除数组某一项
+      }
+    }
+
+    wx.setStorageSync(this._storageKeyName, cartData);
+
+  }
+
 }
 export {
   Cart
