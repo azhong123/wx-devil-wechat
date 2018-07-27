@@ -40,15 +40,22 @@
 }
 
 .cart-item-checkbox image {
-  height: 44rpx;
-  width: 44rpx;
+  height: 50rpx;
+  width: 50rpx;
+}
+
+.checkbox-no-select {
+  height: 30rpx;
+  width: 30rpx;
+  border-radius: 50rpx;
+  border: 1px solid #989898;
 }
 
 .cart-item-img {
   width: 186rpx;
   height: 100%;
   background-color: #f5f6f5;
-  border-radius: 4rpx;
+  border-radius: 8rpx;
 }
 
 .cart-item-img image {
@@ -117,8 +124,14 @@
 /*合计*/
 
 .all-accounts-box {
-  background-color: #ab956d;
-  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  height: 80rpx;
+  /* background-color: #ab956d; */
+  background-color: white;
+  color: #ab956d;
 }
 
 .all-accounts-box>view {
@@ -128,47 +141,64 @@
 
 .all-select {
   font-size: 28rpx;
-  width: 40%;
-}
-
-.all-select image {
-  height: 48rpx;
-  width: 48rpx;
-  margin: 0 20rpx;
-}
-
-.all-price-submit {
-  width: 60%;
-}
-
-.all-price-submit.disabled {
-  color: #e6e6e6;
-}
-
-.accounts-btn, .price-text, .arrow-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32rpx;
-}
-
-.accounts-btn {
-  width: 50%;
-  font-size: 28rpx;
-  border-right: 3rpx dotted #fff;
-}
-
-.price-text {
-  width: 20%;
-  font-size: 28rpx;
-  margin-left: 10rpx;
-}
-
-.arrow-icon {
   width: 30%;
 }
 
-.arrow-icon image {
-  height: 32rpx;
-  width: 32rpx;
+.all-select image {
+  height: 50rpx;
+  width: 50rpx;
+  margin: 0 20rpx;
+}
+
+.accounts-checkbox-no-select {
+  height: 30rpx;
+  width: 30rpx;
+  border-radius: 50rpx;
+  margin: 0 28rpx;
+  border: 1px solid #989898;
+}
+
+.all-select .title {
+  font-size: 25rpx;
+  color: #454553;
+}
+
+.account-price {
+  color: #454552;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 40%;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.shopping-cart-submit {
+  width: 30%;
+}
+
+button {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  font-size: 30rpx;
+  overflow: hidden;
+  line-height: 70rpx;
+}
+
+.order-submit-button {
+  margin-right: 8px;
+  border-radius: 50px;
+  background-color: #ab956d;
+  width: 84%;
+  height: 70rpx;
+}
+
+.order-submit-button::after {
+  border: none;
+}
+
+.order-submit-button.disabled {
+  color: #e6e6e6;
 }

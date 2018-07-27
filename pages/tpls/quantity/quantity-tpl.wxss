@@ -28,10 +28,14 @@
   /* margin: 0 auto; */
   text-align: center;
   font-size: 12px;
-  color: #000;
+  /* color: #000; */
   /*给中间的input设置左右边框即可*/
   border-left: 1rpx solid #818284;
   border-right: 1rpx solid #818284;
+  /* box-sizing: border-box; */
+
+  color: #454553;
+  /* padding-top: 12rpx; */
   box-sizing: border-box;
 }
 

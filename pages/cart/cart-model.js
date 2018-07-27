@@ -53,6 +53,22 @@ class Cart extends Base {
   }
 
   /**
+   * 删除指定购物车信息
+   */
+  deleteShoppingCart(cart, callback) {
+    var param = {
+      url: '/shopping/v1/cart/delete',
+      type: 'DELETE',
+      data: cart,
+      token: wx.getStorageSync('token'),
+      sCallback: function(res) {
+        callback && callback(res);
+      }
+    };
+    this.request(param);
+  }
+
+  /**
    * 获取缓存中的购物车信息
    */
   getCartDataFromLocal() {
@@ -66,14 +82,14 @@ class Cart extends Base {
   /**
    * 判断所选商品是否存在购物中
    */
-  _isHasThatOne(shaoppingId, cartData) {
-    var item = {},
+  _isHasThatOne(shoppingCartId, cartData) {
+    var item,
       result = {
         index: -1
       };
     for (let i = 0; i < cartData.length; i++) {
       item = cartData[i];
-      if (item.shoppingCartId == shaoppingId) {
+      if (item.shoppingCartId == shoppingCartId) {
         result = {
           index: i,
           data: item
@@ -88,7 +104,7 @@ class Cart extends Base {
    * 修改购物车商品数量
    */
   _changeCounts(shoppingId, count) {
-    var cartData = this.getCartDataFromLocal,
+    var cartData = this.getCartDataFromLocal(),
       hasInfo = this._isHasThatOne(shoppingId, cartData);
     if (hasInfo.index != -1) {
       if (hasInfo.data.goodsNum > 1) {
@@ -102,34 +118,32 @@ class Cart extends Base {
   /**
    * 增加商品数目
    */
-  addCounts(id) {
-    this._changeCounts(id, 1);
+  addCounts(shoppingCartId) {
+    this._changeCounts(shoppingCartId, 1);
   }
 
   /**
    * 购物车减
    */
-  cutCounts(id) {
-    this._changeCounts(id, -1);
+  cutCounts(shoppingCartId) {
+    this._changeCounts(shoppingCartId, -1);
   }
 
   /**
    * 删除缓存中的购物车信息
    */
-  delete(ids) {
-    if (!(ids instanceof Array)) {
-      ids = [ids];
+  delete(shoppingCartIds) {
+    if (!(shoppingCartIds instanceof Array)) {
+      ids = [shoppingCartIds];
     }
     var cartData = this.getCartDataFromLocal();
-    for (let i = 0; i < ids.length; i++) {
+    for (let i = 0; i < shoppingCartIds.length; i++) {
       var hasInfo = this._isHasThatOne(ids[i], cartData);
       if (hasInfo.index != -1) {
         cartData.splice(hasInfo.index, 1); //删除数组某一项
       }
     }
-
     wx.setStorageSync(this._storageKeyName, cartData);
-
   }
 
 }
