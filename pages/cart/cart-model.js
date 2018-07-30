@@ -69,6 +69,22 @@ class Cart extends Base {
   }
 
   /**
+   * 删除指定购物车信息
+   */
+  saveShoppingCarts(cart, callback) {
+    var param = {
+      url: '/shopping/v1/cart/save',
+      type: 'POST',
+      data: cart,
+      token: wx.getStorageSync('token'),
+      sCallback: function (res) {
+        callback && callback(res);
+      }
+    };
+    this.request(param);
+  }
+
+  /**
    * 获取缓存中的购物车信息
    */
   getCartDataFromLocal() {
@@ -78,6 +94,11 @@ class Cart extends Base {
     }
     return cartData;
   }
+
+  /*本地缓存 保存／更新*/
+  execSetStorageSync(data) {
+    wx.setStorageSync(this._storageKeyName, data);
+  };
 
   /**
    * 判断所选商品是否存在购物中

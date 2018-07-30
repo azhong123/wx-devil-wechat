@@ -5,7 +5,6 @@ var cart = new Cart();
 
 var cartData = null;
 var len = 0;
-var storageKeyName = 'cart';
 Page({
 
   /**
@@ -13,7 +12,6 @@ Page({
    */
   data: {
     cartData: [],
-    storageKeyName: 'cart'
   },
 
   /**
@@ -24,12 +22,37 @@ Page({
   },
 
   /**
+   * 页面隐藏触发的事件
+   */
+  onHide: function() {
+
+    var cartData = this.data.cartData,
+      len = cartData.length,
+      cartObjs = new Array();
+    for (let i = 0; i < len; i++) {
+      var cartObj = {
+        shoppingCartId: cartData[i].shoppingCartId,
+        goodsId: cartData[i].goodsListDTO.goodsId,
+        goodsNum: cartData[i].goodsNum,
+        goodsPrice: cartData[i].goodsPrice,
+        isChecked: cartData[i].isChecked,
+      };
+      cartObjs.push(cartObj);
+    }
+
+    cart.saveShoppingCarts(cartObjs, (res) => {
+      cart.execSetStorageSync(this.data.cartData);
+
+    });
+  },
+
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
     cart.getAllShoppingCart((res) => {
       // 将数据同步放入缓存中
-      wx.setStorageSync(this.data.storageKeyName, res);
+      cart.execSetStorageSync(res);
       this._loadData();
     });
   },
@@ -44,6 +67,7 @@ Page({
     this.setData({
       selectedCounts: cal.selectedCounts,
       selectedTypeCounts: cal.selectedTypeCounts,
+      selectedShoppingCartIds: cal.selectedShoppingCartIds,
       account: cal.account,
       cartData: cartData
     })
@@ -64,15 +88,18 @@ Page({
       selectedTypeCounts = 0;
 
     let multiple = 100;
+    var selectedShoppingCartIds = new Array();
     for (let i = 0; i < len; i++) {
       if (cartData[i].isChecked == '1') {
         account += cartData[i].goodsNum * multiple * Number(cartData[i].goodsPrice) * multiple;
         selectedCounts += cartData[i].goodsNum;
+        selectedShoppingCartIds.push(cartData[i].shoppingCartId);
         selectedTypeCounts++;
       }
     }
     return {
       selectedCounts: selectedCounts,
+      selectedShoppingCartIds: selectedShoppingCartIds,
       selectedTypeCounts: selectedTypeCounts,
       account: account / (multiple * multiple)
     }
@@ -103,6 +130,7 @@ Page({
     this.setData({
       account: newData.account,
       selectedCounts: newData.selectedCounts,
+      selectedShoppingCartIds: newData.selectedShoppingCartIds,
       selectedTypeCounts: newData.selectedTypeCounts,
       cartData: this.data.cartData
     });
@@ -119,6 +147,23 @@ Page({
         return i;
       }
     }
+  },
+
+  /**
+   * 全选/反选
+   */
+  toggleSelectAll: function(event) {
+    var status = cart.getDataSet(event, 'ischecked') == '1';
+    var data = this.data.cartData,
+      len = cartData.length;
+    for (let i = 0; i < len; i++) {
+      if (status) {
+        data[i].isChecked = '0';
+      } else {
+        data[i].isChecked = '1';
+      }
+    }
+    this._resetCartData();
   },
 
   /**
@@ -152,15 +197,24 @@ Page({
 
     this._resetCartData();
 
-
-    // 删除缓存中购物车信息
-    // cart.delete(shoppingcartid);
-    var cartObj = [{
-      shoppingCartId: shoppingcartid
-    }]
+    var cartObj = {
+      shoppingCartIds: [shoppingcartid]
+    }
     //删除服务器中的购物车信息
     cart.deleteShoppingCart(cartObj);
 
+    // 删除缓存中的购物车信息
+    cart.delete(shoppingcartid);
+  },
+
+  /**
+   * 购物车结算
+   */
+  cartSubmit: function(event) {
+    var shoppingCartIds = cart.getDataSet(event, "shoppingcartids");
+    wx.navigateTo({
+      url: '../cart/submit/cartsubmit?shoppingCartIds=' + shoppingCartIds,
+    })
   },
 
   /**

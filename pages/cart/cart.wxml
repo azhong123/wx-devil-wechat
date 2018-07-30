@@ -49,14 +49,13 @@
       <view class="all-select" bindtap="toggleSelectAll" data-isChecked="{{selectedTypeCounts == cartData.length ? '1' : '0'}}">
         <image wx:if="{{selectedTypeCounts == cartData.length}}" class="title-icon" src="../../imgs/icon/all@selected.png"></image>
         <view wx:else class="accounts-checkbox-no-select"></view>
-        <!-- <image wx:else class="title-icon" src="../../imgs/icon/all.png"></image> -->
         <view class="title">全选</view>
       </view>
 
       <view class="account-price">合计：￥{{account}}</view>
-      
+
       <view class="shopping-cart-submit">
-        <button class="order-submit-button {{account==0?'disabled':''}}" bindtap="submitOrder">结算({{selectedCounts}})</button>
+        <button class="order-submit-button {{account==0?'disabled':''}}" bindtap="cartSubmit" data-shoppingCartIds="{{selectedShoppingCartIds}}">结算({{selectedCounts}})</button>
       </view>
       <view>
       </view>
