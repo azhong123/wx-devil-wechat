@@ -53,7 +53,7 @@
   margin-bottom: 20rpx;
 }
 
-.contact-address-box{
+.contact-address-box {
   margin-left: 20rpx;
 }
 
@@ -65,7 +65,7 @@
   flex: 1;
 }
 
-.contact-address{
+.contact-address {
   margin-left: -15rpx;
   flex-basis: 110rpx;
   display: flex;
@@ -73,14 +73,14 @@
   justify-content: flex-start;
 }
 
-.contact-address image{
+.contact-address image {
   /* transform: rotate(270deg); */
   height: 40rpx;
   width: 40rpx;
 }
 
 .contact-icon {
-  flex-basis: 110rpx;
+  /* flex-basis: 100rpx; */
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -105,13 +105,13 @@
 
 .address-user-box .title {
   font-size: 30rpx;
-  font-weight:700;
+  font-weight: 700;
   color: rgb(8, 8, 8);
 }
 
 .contact .val {
   font-size: 30rpx;
-  font-weight:600;
+  font-weight: 600;
   color: rgb(0, 0, 0);
 }
 
@@ -153,7 +153,7 @@
   flex-basis: 180rpx;
   height: 100%;
   background-color: #f5f6f5;
-  border-radius: 4rpx;
+  border-radius: 8rpx;
 }
 
 .product-item .item-left image {
@@ -170,12 +170,41 @@
   margin: 15rpx 0;
 }
 
-.product-item .item-right {
-  flex-basis: 80rpx;
+.item-middle{
+  height: 100%;
+}
+
+.item-middle-name {
+  height: 20%;
+  font-size: 28rpx;
+  color: rgb(8, 8, 8);
+}
+
+.item-middle-sku{
+  height: 35%;
+}
+
+.item-middle-price {
+  color: #f83730;
+  font-weight: 590;
+  font-size: 30rpx;
+}
+
+.item-right {
+  margin-top: 140rpx;
+  font-weight: 590;
+  font-size: 30rpx;
+  color: rgb(8, 8, 8);
   text-align: center;
 }
 
 .order-accounts {
+  position: fixed;
+  bottom: 0;
+  height: 85rpx;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #e6e6e6;
   background-color: #fff;
 }
 
@@ -186,22 +215,45 @@
 
 .total-account {
   flex: 1;
-  color: #93312e;
   padding-left: 20rpx;
+  color: #f83730;
+  font-size: 40rpx;
+}
+
+.total-title {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.total-fu {
+  font-size: 25rpx;
+}
+
+.total-price {
+  color: #f83730;
+  font-weight: 600;
+  font-size: 40rpx;
 }
 
 .pay {
+  /* margin-right: 8px; */
   flex-basis: 240rpx;
+  /* border-radius: 50px; */
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
   background-color: #ab956d;
   color: #fff;
   justify-content: center;
+  /* width: 84%; */
+  /* height: 70rpx; */
 }
 
-.pay:active {
-  background: #84704d;
+.pay::after {
+  border: none;
 }
 
 .pay.disabled {
+  /* color: #e6e6e6; */
   background: rgba(171, 149, 109, 0.6);
   pointer-events: auto;
 }

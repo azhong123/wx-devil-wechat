@@ -2,16 +2,23 @@
 import {
   CartSubmit
 } from '../submit/cartsubmit-model.js';
+
+import {
+  OrderSubmit
+} from '../../../pages/order/ordersubmit/ordersubmit-model.js';
 var cartSubmit = new CartSubmit();
+var orderSubmit = new OrderSubmit();
 
 var cartSubmitObj = null;
+var shoppingCartIds = [];
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cartSubmitObj: null
+    cartSubmitObj: null,
+    shoppingCartIds: []
   },
 
   /**
@@ -29,9 +36,28 @@ Page({
     cartSubmit.cartPay(ids, (res) => {
       this.data.cartSubmitObj = res;
       this.setData({
+        shoppingCartIds: ids,
         cartSubmitObj: this.data.cartSubmitObj
       });
       console.log(res);
+    });
+  },
+
+  /**
+   * 订单去支付
+   */
+  orderToPay: function() {
+    var data = this.data.cartSubmitObj;
+    if (!data.addressDTO) {
+      this.showTips('下单提示', '请填写您的收货地址');
+      return;
+    }
+    var orderPay = {
+      shoppingCartIds: this.data.shoppingCartIds,
+      addressId: data.addressDTO.addressId
+    };
+    orderSubmit.orderSubmit(orderPay, (res)=>{
+
     });
   }
 })

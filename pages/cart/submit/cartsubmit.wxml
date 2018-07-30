@@ -17,7 +17,6 @@
             </view>
           </view>
           <view class="address-detail-box">
-            <!-- <view class="detail-title"></view> -->
             <view class="detail-val">收获地址：{{cartSubmitObj.addressDTO.addressDetail}}</view>
           </view>
         </view>
@@ -34,5 +33,35 @@
     </block>
   </view>
 
-  <view></view>
+  <view class="separate-thick"></view>
+
+  <!-- 订单商品 -->
+  <view class="order-main">
+    <block wx:for="{{cartSubmitObj.goodsCartDTOS}}" wx:key="{{item.goodsId}}">
+      <view class="product-item">
+        <view class="item-left">
+          <image src="{{item.goodsMinImg}}"></image>
+        </view>
+        <view class="item-middle">
+          <view class="item-middle-name">{{item.goodsName}}</view>
+          <view class="item-middle-sku"></view>
+          <view class="item-middle-price">￥{{item.goodsPrice}}</view>
+        </view>
+        <view class="item-right">
+          ×{{item.goodsNum}}
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!--结算-->
+  <view class="order-accounts">
+    <view class="total-account">
+      <view class="total-title">合计：</view>
+      <view class="total-fu">￥</view>
+      <view class="total-price">{{cartSubmitObj.goodsSumPrice}}</view>
+    </view>
+    <view class="pay {{!cartSubmitObj.addressDTO?'disabled':''}}" bindtap="orderToPay">去付款</view>
+  </view>
+
 </view>

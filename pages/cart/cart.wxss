@@ -79,6 +79,12 @@
   justify-content: space-between;
 }
 
+.title-box .price{
+  color: #f83730;
+  font-weight: 600;
+  font-size: 30rpx
+}
+
 .bottom-box {
   font-size: 24rpx;
   display: flex;

@@ -20,7 +20,7 @@
             <view class="cart-item-word">
               <view class="title-box" bindtap="onProductsItemTap" data-id="{{item.goodsListDTO.goodsId}}">
                 <view class="title">{{item.goodsListDTO.goodsName}}</view>
-                <view>{{item.goodsListDTO.goodsPrice}}</view>
+                <view class="price">{{item.goodsListDTO.goodsPrice}}</view>
               </view>
 
               <view class="bottom-box">
