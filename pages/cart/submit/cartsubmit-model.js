@@ -9,18 +9,10 @@ class CartSubmit extends Base {
   /**
    * 购物车提交结算
    */
-  cartPay(shoppingCartId, callback) {
-    var ids = new Array();
-    if (!(shoppingCartId instanceof Array)) {
-      ids = [shoppingCartId];
-    }
+  cartPay(shoppingCartIds, callback) {
     var cartObj = {
-      shoppingCartIds: ids
+      shoppingCartIds: shoppingCartIds
     }
-
-    // var cartObj = {
-    //   shoppingCartIds: [shoppingcartid]
-    // }
     var param = {
       url: '/shopping/v1/cart/pay',
       token: wx.getStorageSync('token'),

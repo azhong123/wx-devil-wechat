@@ -1,2 +1,38 @@
 <!--pages/cart/submit/cartsubmit.wxml-->
-<text>pages/cart/submit/cartsubmit.wxml</text>
+<view class="container">
+  <!-- 收获地址 -->
+  <view class="order-address-info" bindtap="editAddress">
+    <block wx:if="{{cartSubmitObj.addressDTO}}">
+      <view class="contact-box">
+        <view class="contact-address">
+          <image src="../../../imgs/icon/address.png"></image>
+        </view>
+        <view class="contact-address-box">
+          <view class="contact">
+            <view class="address-user-box">
+              <text class="val">收货人：{{cartSubmitObj.addressDTO.customerName}}</text>
+            </view>
+            <view class="mobile-box">
+              <text class="val">{{cartSubmitObj.addressDTO.customerMobile}}</text>
+            </view>
+          </view>
+          <view class="address-detail-box">
+            <!-- <view class="detail-title"></view> -->
+            <view class="detail-val">收获地址：{{cartSubmitObj.addressDTO.addressDetail}}</view>
+          </view>
+        </view>
+        <view class="contact-icon">
+          <image src="../../../imgs/icon/arrow@right.png"></image>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="add-new-address">
+        <text class="icon">+</text>
+        <text>添加地址</text>
+      </view>
+    </block>
+  </view>
+
+  <view></view>
+</view>

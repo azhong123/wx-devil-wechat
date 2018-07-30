@@ -213,7 +213,7 @@ Page({
   cartSubmit: function(event) {
     var shoppingCartIds = cart.getDataSet(event, "shoppingcartids");
     wx.navigateTo({
-      url: '../cart/submit/cartsubmit?shoppingCartIds=' + shoppingCartIds,
+      url: '../cart/submit/cartsubmit?shoppingCartIds=' + JSON.stringify(shoppingCartIds),
     })
   },
 
