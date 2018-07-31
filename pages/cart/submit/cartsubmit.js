@@ -56,8 +56,17 @@ Page({
       shoppingCartIds: this.data.shoppingCartIds,
       addressId: data.addressDTO.addressId
     };
-    orderSubmit.orderSubmit(orderPay, (res)=>{
+    orderSubmit.orderSubmit(orderPay, (res) => {
 
     });
+  },
+
+  /**
+   * 地址选择
+   */
+  chooseAddres: function() {
+    wx.navigateTo({
+      url: '/pages/my/address/address',
+    })
   }
 })

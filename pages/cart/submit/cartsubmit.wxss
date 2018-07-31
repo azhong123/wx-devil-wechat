@@ -1,97 +1,6 @@
 /* pages/cart/submit/cartsubmit.wxss */
 @import "../../tpls/base.wxss";
 
-.order-container {
-  background-color: #f4f4f4;
-  overflow-x: hidden;
-  font-size: 28rpx;
-}
-
-.order-container>view {
-  background-color: #fff;
-}
-
-.order-main {
-  padding-bottom: 92rpx;
-}
-
-.order-basic-info {
-  padding: 20rpx 40rpx;
-}
-
-.order-basic-info {
-  border-bottom: 1rpx solid #e9e9e9;
-  display: flex;
-}
-
-.order-time-no {
-  flex: 1;
-}
-
-.order-status {
-  display: flex;
-  flex-basis: 110rpx;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.order-time-no view:first-child {
-  margin-bottom: 15rpx;
-}
-
-.order-time-no view .key {
-  color: #999;
-}
-
-.order-time-no view .val {
-  margin-left: 10rpx;
-  color: #333;
-}
-
-.order-address-info {
-  padding: 20rpx 40rpx;
-  margin-bottom: 20rpx;
-}
-
-.contact-address-box {
-  margin-left: 20rpx;
-}
-
-.contact-box {
-  display: flex;
-}
-
-.contact-box>view:first-child {
-  flex: 1;
-}
-
-.contact-address {
-  margin-left: -15rpx;
-  flex-basis: 110rpx;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.contact-address image {
-  /* transform: rotate(270deg); */
-  height: 40rpx;
-  width: 40rpx;
-}
-
-.contact-icon {
-  /* flex-basis: 100rpx; */
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.contact-icon image {
-  transform: rotate(270deg);
-  height: 48rpx;
-  width: 48rpx;
-}
-
 .contact {
   display: flex;
   justify-content: space-between;
@@ -101,6 +10,46 @@
 .contact view {
   display: flex;
   align-items: center;
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  float: left;
+  margin: 10rpx 0rpx 15rpx;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 90rpx;
+}
+
+.contact-address {
+  display: flex;
+  width: 10%;
+  justify-content: center;
+}
+
+.contact-address image {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.contact-icon {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-icon image {
+  transform: rotate(270deg);
+  height: 48rpx;
+  width: 48rpx;
+}
+
+.contact-address-box {
+  width: 80%;
 }
 
 .address-user-box .title {
@@ -140,6 +89,19 @@
   color: #999;
 }
 
+.address-code{
+  bottom: 0;
+  height: 10rpx;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #e6e6e6;
+}
+
+.address-code image {
+  height: 10rpx;
+  width: 100%;
+}
+
 .product-item {
   display: flex;
   justify-content: space-around;
@@ -170,7 +132,7 @@
   margin: 15rpx 0;
 }
 
-.item-middle{
+.item-middle {
   height: 100%;
 }
 
@@ -180,7 +142,7 @@
   color: rgb(8, 8, 8);
 }
 
-.item-middle-sku{
+.item-middle-sku {
   height: 35%;
 }
 
@@ -201,7 +163,7 @@
 .order-accounts {
   position: fixed;
   bottom: 0;
-  height: 85rpx;
+  height: 78rpx;
   width: 100%;
   display: flex;
   border-top: 1px solid #e6e6e6;
@@ -244,8 +206,7 @@
   background-color: #ab956d;
   color: #fff;
   justify-content: center;
-  /* width: 84%; */
-  /* height: 70rpx; */
+  /* width: 84%; *//* height: 70rpx; */
 }
 
 .pay::after {

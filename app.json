@@ -7,7 +7,8 @@
     "pages/cart/cart",
     "pages/my/my",
     "pages/cart/submit/cartsubmit",
-    "pages/order/ordersubmit/ordersubmit"
+    "pages/order/ordersubmit/ordersubmit",
+    "pages/my/address/address"
   ],
   "window": {
     "backgroundTextStyle": "light",
