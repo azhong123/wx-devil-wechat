@@ -11,6 +11,7 @@ var orderSubmit = new OrderSubmit();
 
 var cartSubmitObj = null;
 var shoppingCartIds = [];
+var addressData = {};
 Page({
 
   /**
@@ -18,6 +19,7 @@ Page({
    */
   data: {
     cartSubmitObj: null,
+    addressData: null,
     shoppingCartIds: []
   },
 
@@ -29,6 +31,20 @@ Page({
   },
 
   /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1]; //当前页面
+    var chooseAddressData = currPage.data.chooseAddressData;
+    if (chooseAddressData) {
+      this.setData({
+        addressData: chooseAddressData
+      })
+    }
+  },
+
+  /**
    * 加载数据
    */
   _loadData: function(event) {
@@ -37,9 +53,9 @@ Page({
       this.data.cartSubmitObj = res;
       this.setData({
         shoppingCartIds: ids,
+        addressData: this.data.cartSubmitObj.addressDTO,
         cartSubmitObj: this.data.cartSubmitObj
       });
-      console.log(res);
     });
   },
 

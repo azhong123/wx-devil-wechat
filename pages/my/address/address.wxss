@@ -1,1 +1,185 @@
 /* pages/my/address/address.wxss */
+
+/* 地址列表 */
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.contact view {
+  display: flex;
+  align-items: center;
+}
+
+.address-contact {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  float: left;
+  margin: 10rpx 0rpx 15rpx;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 90rpx;
+}
+
+.contact-address {
+  display: flex;
+  width: 15%;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.address-family-name-box {
+  background-color: rgb(151, 151, 151);
+  height: 50rpx;
+  width: 50rpx;
+  border-radius: 50rpx;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.address-family-name-box .family-name {
+  font-size: 28rpx;
+  color: #e6e6e6;
+}
+
+.contact-address image {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.contact-icon {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-icon image {
+  /* transform: rotate(270deg); */
+  height: 48rpx;
+  width: 48rpx;
+}
+
+.contact-address-box {
+  width: 70%;
+}
+
+.address-user-box .title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: rgb(8, 8, 8);
+}
+
+.contact .val {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+
+.contact .mobile-box {
+  flex-basis: 200rpx;
+}
+
+.address-detail-box {
+  display: flex;
+  align-items: center;
+}
+
+.address-detail-box view {
+  font-size: 25rpx;
+}
+
+.address-detail-isDefault {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 60rpx;
+  background-color: rgb(255, 196, 196);
+}
+
+.isDefault-title {
+  font-size: 25rpx;
+  color: rgb(255, 0, 0);
+}
+
+.contact image {
+  height: 32rpx;
+  width: 32rpx;
+  margin-right: 10rpx;
+}
+
+.contact-box .detail {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.address-code {
+  bottom: 0;
+  height: 10rpx;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #e6e6e6;
+}
+
+.address-code image {
+  height: 10rpx;
+  width: 100%;
+}
+
+/* 添加收货地址 底部悬浮栏  */
+
+.address-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 65rpx;
+  margin-bottom: 25rpx;
+}
+
+.nav-but {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+}
+
+button {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  font-size: 30rpx;
+  overflow: hidden;
+  width: 40%;
+  height: 65rpx;
+  line-height: 65rpx;
+}
+
+.button-add-cart {
+  border-radius: 50px;
+  background-color: #bfa880;
+  width: 100%;
+}
+
+.button-add-cart::after {
+  border: none;
+}

@@ -10,14 +10,14 @@
         <view class="contact-address-box">
           <view class="contact">
             <view class="address-user-box">
-              <text class="val">收货人：{{cartSubmitObj.addressDTO.customerName}}</text>
+              <text class="val">收货人：{{addressData.customerName}}</text>
             </view>
             <view class="mobile-box">
-              <text class="val">{{cartSubmitObj.addressDTO.customerMobile}}</text>
+              <text class="val">{{addressData.customerMobile}}</text>
             </view>
           </view>
           <view class="address-detail-box">
-            <view class="detail-val">收获地址：{{cartSubmitObj.addressDTO.addressDetail}}</view>
+            <view class="detail-val">收获地址：{{addressData.addressDetail}}</view>
           </view>
         </view>
         <view class="contact-icon">

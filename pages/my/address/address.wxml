@@ -1,33 +1,51 @@
 <!--pages/my/address/address.wxml-->
 <view class="container">
-  <!-- 收货地址列表 -->
-  <view class="order-address-info" bindtap="chooseAddres">
+  <view class="order-address-info">
+
+    <!-- 收货地址列表 -->
     <block wx:if="{{addressData}}">
-      <view class="contact-box">
-        <view class="contact-address">
-          <image src="../../../imgs/icon/address.png"></image>
-        </view>
-        <view class="contact-address-box">
-          <view class="contact">
-            <view class="address-user-box">
-              <text class="val">收货人：{{cartSubmitObj.addressDTO.customerName}}</text>
+      <block wx:for="{{addressData}}" wx:key="{{index}}">
+        <scroll-view scroll-y="true" class="address-contact">
+          <view class="contact-box" bindtap="backsettleaccounts" data-address="{{item}}">
+            <view class="contact-address">
+              <view class="address-family-name-box">
+                <view class="family-name">{{item.family_name}}</view>
+              </view>
             </view>
-            <view class="mobile-box">
-              <text class="val">{{cartSubmitObj.addressDTO.customerMobile}}</text>
+            <view class="contact-address-box">
+              <view class="contact">
+                <view class="address-user-box">
+                  <text class="val">{{item.customerName}}</text>
+                </view>
+                <view class="mobile-box">
+                  <text class="val">{{item.customerMobile}}</text>
+                </view>
+              </view>
+              <view class="address-detail-box">
+                <view class="address-detail-isDefault" hidden="{{item.isDefault == 0}}">
+                  <view class="isDefault-title">默认</view>
+                </view>
+                <text decode="{{true}}" space="{{true}}" hidden="{{item.isDefault == 0}}">&nbsp;</text>
+                <view class="detail-val">{{item.addressDetail}}</view>
+              </view>
+            </view>
+            <view class="contact-icon" catchtap="choosearea">
+              <image src="../../../imgs/icon/address@edit.png"></image>
             </view>
           </view>
-          <view class="address-detail-box">
-            <view class="detail-val">收获地址：{{cartSubmitObj.addressDTO.addressDetail}}</view>
-          </view>
-        </view>
-        <view class="contact-icon">
-          <image src="../../../imgs/icon/arrow@right.png"></image>
+        </scroll-view>
+      </block>
+
+      <!-- 添加收货地址 底部悬浮栏 -->
+      <view class="address-nav">
+        <view class="nav-but">
+
+          <button class="button-add-cart" bindtap="toggleDialog" data-index="2" formType="submit">
+            <text decode="{{true}}" space="{{true}}">+&nbsp;新建收货地址</text>
+          </button>
         </view>
       </view>
-      <view class="address-code">
-        <image src="../../../imgs/icon/address@code.png" />
-      </view>
-      <view class="separate-thick"></view>
+
     </block>
     <block wx:else>
       <view class="add-new-address">

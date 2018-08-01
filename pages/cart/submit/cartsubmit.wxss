@@ -198,15 +198,12 @@
 }
 
 .pay {
-  /* margin-right: 8px; */
   flex-basis: 240rpx;
-  /* border-radius: 50px; */
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
   background-color: #ab956d;
   color: #fff;
   justify-content: center;
-  /* width: 84%; *//* height: 70rpx; */
 }
 
 .pay::after {
@@ -214,7 +211,6 @@
 }
 
 .pay.disabled {
-  /* color: #e6e6e6; */
   background: rgba(171, 149, 109, 0.6);
   pointer-events: auto;
 }
