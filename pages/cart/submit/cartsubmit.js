@@ -82,7 +82,7 @@ Page({
    */
   chooseAddres: function() {
     wx.navigateTo({
-      url: '/pages/my/address/address',
+      url: '../../../pages/my/address/address-list/address-list',
     })
   }
 })

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/home/home",
     "pages/product/product",
     "pages/theme/theme",
@@ -8,7 +9,10 @@
     "pages/my/my",
     "pages/cart/submit/cartsubmit",
     "pages/order/ordersubmit/ordersubmit",
-    "pages/my/address/address"
+    "pages/my/address/address",
+    "pages/my/address/address-detail/address-detail",
+    "pages/my/address/address-list/address-list",
+    "pages/my/address/address-save/address-save"
   ],
   "window": {
     "backgroundTextStyle": "light",

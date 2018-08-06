@@ -1,0 +1,35 @@
+<!--pages/my/address/address-save/address-save.wxml-->
+<import src="../../../../pages/tpls/address/area_select.wxml" />
+<!-- <view class="container">
+  <view class="select" bindtap="choosearea">点击我</view>
+  <view class="value" wx:if="{{addressData.resideprovince}}">{{addressData.resideprovince}}-{{addressData.residecity}}-{{addressData.country}}</view>
+</view> -->
+<template is="area_select" data="{{showArea,resideprovince,residecity,country,currentTab,curr_pro,curr_cit,curr_cou}}" />
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section">
+      <text decode="{{true}}" space="{{true}}" class="section-title">收货人&nbsp;&nbsp;&nbsp;&nbsp;</text>{{shengArr[shengIndex]}}
+      <input type="text" name="name" class="section-value" autofocus="autofocus" />
+    </view>
+    <view class="section">
+      <text decode="{{true}}" space="{{true}}" class="section-title">手机号码&nbsp;&nbsp;&nbsp;&nbsp;</text>{{shengArr[shengIndex]}}
+      <input type="text" name="phone" class="section-value" />
+    </view>
+    <view class="section" bindtap="choosearea">
+      所在地区
+      <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;</text>{{shengArr[shengIndex]}}
+      <view class="section-city" wx:if="{{addressData.resideprovince}}">{{addressData.resideprovince}}{{addressData.residecity}}{{addressData.country}}</view>
+    </view>
+    <view class="section">
+      <input type="text" class="section-value" name="address" placeholder="详细地址" />
+    </view>
+
+    <view class="address-nav">
+      <view class="nav-but">
+        <button formType="submit" class="button-save-address">
+          <text>保存地址</text>
+        </button>
+      </view>
+    </view>
+  </form>
+</view>

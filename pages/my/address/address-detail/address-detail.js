@@ -1,4 +1,4 @@
-// pages/my/address/address.js
+// pages/my/address/address-detail/address-detail.js
 Page({
 
   /**

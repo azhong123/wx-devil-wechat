@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "地址列表",
+  "usingComponents": {
+    "component-tag-name": "../../../../components/toast/toast"
+  }
+}

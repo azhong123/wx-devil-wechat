@@ -1,0 +1,261 @@
+/* pages/my/address/address-save/address-save.wxss */
+
+/* 地址列表 */
+
+page {
+  background: #fff;
+}
+
+.container {
+  font-size: 12px;
+}
+
+.section {
+  height: 80rpx;
+  border-bottom: 1px #e6e6e6 solid;
+  display: flex;
+  align-items: center;
+  margin: 0 30rpx;
+}
+
+/* 添加收货地址 底部悬浮栏  */
+
+.address-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 65rpx;
+  margin-bottom: 25rpx;
+}
+
+.nav-but {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+  background-color: #050504;
+}
+
+button {
+  position: fixed;
+  background-color: #fc0;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  font-size: 30rpx;
+  overflow: hidden;
+  width: 40%;
+  height: 65rpx;
+  line-height: 65rpx;
+}
+
+.button-save-address {
+  border-radius: 50px;
+  background-color: #bfa880;
+  width: 55%;
+}
+
+.button-save-address::after {
+  border: none;
+}
+
+.picker {
+  width: 600rpx;
+  height: 100%;
+}
+
+.section-value {
+  width: 250px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.section-title{
+  width: 70px;
+  font-size: 12px;
+}
+
+.section-city {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/*地址选择器*/
+
+.area2-select-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #9d9d9d;
+  font-size: 28rpx;
+  z-index: -999999;
+}
+
+.area2-select-wrap .area2-select-mask {
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.area2-select-wrap .area2-select-inner {
+  transition: transform 0.3s;
+  transform: translate(0, 100%);
+}
+
+.area2-select-wrap.show {
+  z-index: 9;
+}
+
+.area2-select-wrap.show .area2-select-mask {
+  opacity: 1;
+  z-index: 1;
+}
+
+.area2-select-wrap.show .area2-select-inner {
+  transform: translate(0, 0%);
+  z-index: 2;
+}
+
+.area2-select-mask {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: -99999;
+  position: absolute;
+}
+
+.area2-select-inner {
+  height: 840rpx;
+  z-index: -99999;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.area2-select-header {
+  height: 70rpx;
+  line-height: 120rpx;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.area2-close-wrap {
+  width: 70rpx;
+  height: 28rpx;
+  position: absolute;
+  line-height: normal;
+  padding: 15rpx 15rpx;
+}
+
+.area2-close-title {
+  line-height: normal;
+  padding: 20rpx 20rpx;
+  font-size: 13px;
+}
+
+.area2-close-icon {
+  width: 46rpx;
+  height: 46rpx;
+  position: fixed;
+  right: 10rpx;
+}
+
+.area2-sub-header {
+  height: 60rpx;
+  line-height: 60rpx;
+  border-bottom: 1px solid #f3f3f3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 24rpx;
+}
+
+.area2-sub-item {
+  padding: 0 8rpx;
+  position: relative;
+}
+
+.area2-sub-item::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 6rpx;
+  bottom: 0;
+  left: 0;
+  background-color: #ab956d;
+}
+
+.area2-sub-item.on {
+  font-size: 13;
+  color: #ab956d;
+}
+
+.area2-sub-item.on::after {
+  display: block;
+}
+
+.area2-item-wrap {
+  flex: 1;
+}
+
+.area2-swiper-box {
+  height: 700rpx;
+}
+
+.area2-swiper-inner {
+  padding: 10rpx 44rpx;
+}
+
+.area2-swiper-item {
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.area2-swiper-item.on {
+  color: #ab956d;
+}
+
+.area2-swiper-areaname {
+  position: relative;
+  padding-right: 45px;
+}
+
+.area2-swiper-areaname::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0px;
+  top: 50%;
+  margin-top: -10px;
+  line-height: normal;
+  display: none;
+  background-position: center center;
+  background-size: 10px auto;
+  background-repeat: no-repeat;
+  background-image: url(http://cdn.jiguo.com/static/WeiXin/images/center/area_gou.png);
+}
+
+.on .area2-swiper-areaname::after {
+  display: block;
+}

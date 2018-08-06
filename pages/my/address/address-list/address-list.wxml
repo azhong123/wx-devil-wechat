@@ -1,4 +1,4 @@
-<!--pages/my/address/address.wxml-->
+<!--pages/my/address/address-list/address-list.wxml-->
 <view class="container">
   <view class="order-address-info">
 
@@ -27,8 +27,8 @@
                 </view>
               </view>
             </view>
-            <view class="contact-icon" catchtap="choosearea">
-              <image src="../../../imgs/icon/address@edit.png"></image>
+            <view class="contact-icon" catchtap="updateaddress">
+              <image src="../../../../imgs/icon/address@edit.png"></image>
             </view>
           </view>
         </scroll-view>
@@ -36,9 +36,8 @@
 
       <!-- 添加收货地址 底部悬浮栏 -->
       <view class="address-nav">
-        <view class="nav-but">
-
-          <button class="button-add-cart" bindtap="toggleDialog" data-index="2" formType="submit">
+        <view class="nav-but" bindtap="saveaddress" bindgetuserinfo="diytoast">
+          <button class="button-save-address">
             <text decode="{{true}}" space="{{true}}">+&nbsp;新建收货地址</text>
           </button>
         </view>
@@ -46,13 +45,14 @@
 
     </block>
     <block wx:else>
-      <view class="add-new-address">
+      <view class="add-new-address" bindtap="saveaddress" >
         <text class="icon">+</text>
         <text>添加地址</text>
       </view>
     </block>
   </view>
-
-  <!-- 添加收货地址 -->
-  <view></view>
 </view>
+
+ <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="diytoast"> 自定义弹窗 </button> -->
+
+ <component-tag-name class='mydialog' ></component-tag-name>

@@ -1,6 +1,7 @@
 import {
   Config
 } from '../utils/config.js';
+
 class Base {
   constructor() {
     this.baseRequestUrl = Config.restUrl;
@@ -25,7 +26,7 @@ class Base {
       header: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUjK0MDUwNDe0NDE00o0O8vdxjXd08fX001EAs0ODXYNilXSUMhNLlKwMTY2NTI2MjU0MgQIpQL6OUl5ibiqqIUDFqRUFYMXGhkYWhiaGtQAAAAD__w.0vxt4hL0GHWJrgQt-gXvCY2cnyloQTgl9ruu3ad29l4'
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUjK0MDUwNDe0NDE00o0O8vdxjXd08fX001EAs0ODXYNilXSUMhNLlKwMTY2NjQyNjU2MgQIpQL6OUl5ibiqqIUDFqRUFEMUWhhaGJsa1AAAAAP__.xSJJKE4063K4uiadN-IOFNpVDUvhMPwFUW50j__XRiU'
       },
       success: function(res) {
         params.sCallback && params.sCallback(res.data.data);
@@ -34,7 +35,7 @@ class Base {
         console.log(err);
       }
     })
-  }
+  };
 
   /**
    * 获取 页面跳转传递的值
@@ -42,6 +43,8 @@ class Base {
   getDataSet(event, key) {
     return event.currentTarget.dataset[key];
   };
+
+  
 }
 export {
   Base

@@ -17,7 +17,7 @@
   flex-direction: row;
   align-items: center;
   float: left;
-  margin: 10rpx 0rpx 15rpx;
+  margin: 25rpx 0rpx 25rpx;
   bottom: 0;
   right: 0;
   z-index: 1;
@@ -89,7 +89,7 @@
   color: #999;
 }
 
-.address-code{
+.address-code {
   bottom: 0;
   height: 10rpx;
   width: 100%;
