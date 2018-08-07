@@ -25,7 +25,6 @@ Page({
    * 页面隐藏触发的事件
    */
   onHide: function() {
-
     var cartData = this.data.cartData,
       len = cartData.length,
       cartObjs = new Array();
@@ -40,9 +39,10 @@ Page({
       cartObjs.push(cartObj);
     }
 
-    cart.saveShoppingCarts(cartObjs, (res) => {
-      cart.execSetStorageSync(this.data.cartData);
-
+    cart.saveShoppingCarts(cartObjs, (event) => {
+      if (cart.isSuccess(event)) {
+        cart.execSetStorageSync(this.data.cartData);
+      }
     });
   },
 
@@ -50,11 +50,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    cart.getAllShoppingCart((res) => {
-      // 将数据同步放入缓存中
-      cart.execSetStorageSync(res);
-      this._loadData();
+    cart.getAllShoppingCart((event) => {
+      if (cart.isSuccess(event)) {
+        var res = event.data.data;
+        // 将数据同步放入缓存中
+        cart.execSetStorageSync(res);
+        this._loadData();
+      }
     });
+    cart.hideLoading();
   },
 
   /**

@@ -1,4 +1,6 @@
 <!--pages/cart/submit/cartsubmit.wxml-->
+
+<component-tag-name class='mydialog'></component-tag-name>
 <view class="container">
   <!-- 收获地址 -->
   <view class="order-address-info" bindtap="chooseAddres">

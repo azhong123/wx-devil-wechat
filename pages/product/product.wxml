@@ -1,6 +1,7 @@
 <!--pages/product/product.wxml-->
 <import src="../tpls/quantity/quantity-tpl.wxml" />
 
+<component-tag-name class='mydialog'></component-tag-name>
 <view class='container'>
   <!--商品轮播图  -->
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" duration="{{duration}}" class="detail-swiper">

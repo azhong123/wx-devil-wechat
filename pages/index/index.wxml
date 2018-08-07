@@ -1,4 +1,0 @@
-<!--index.wxml-->
- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="diytoast"> 自定义弹窗 </button>
-
- <component-tag-name class='mydialog' ></component-tag-name>

@@ -42,6 +42,8 @@ Page({
         addressData: chooseAddressData
       })
     }
+    cartSubmit.hideLoading();
+    this.dialog = this.selectComponent(".mydialog");
   },
 
   /**
@@ -49,13 +51,17 @@ Page({
    */
   _loadData: function(event) {
     var ids = JSON.parse(event.shoppingCartIds);
-    cartSubmit.cartPay(ids, (res) => {
-      this.data.cartSubmitObj = res;
-      this.setData({
-        shoppingCartIds: ids,
-        addressData: this.data.cartSubmitObj.addressDTO,
-        cartSubmitObj: this.data.cartSubmitObj
-      });
+    cartSubmit.cartPay(ids, (revent) => {
+      if (cartSubmit.isSuccess(revent)) {
+        var res = revent.data.data;
+        this.data.cartSubmitObj = res;
+        this.setData({
+          shoppingCartIds: ids,
+          addressData: this.data.cartSubmitObj.addressDTO,
+          cartSubmitObj: this.data.cartSubmitObj
+        });
+      }
+
     });
   },
 
@@ -65,15 +71,18 @@ Page({
   orderToPay: function() {
     var data = this.data.cartSubmitObj;
     if (!data.addressDTO) {
-      this.showTips('下单提示', '请填写您的收货地址');
+      this.dialog.show("请填写您的收货地址");
       return;
     }
     var orderPay = {
       shoppingCartIds: this.data.shoppingCartIds,
       addressId: data.addressDTO.addressId
     };
-    orderSubmit.orderSubmit(orderPay, (res) => {
-
+    orderSubmit.orderSubmit(orderPay, (revent) => {
+      if (orderSubmit.isSuccess(revent)) {
+        this.dialog.show("订单提交成功");
+        orderSubmit.hideLoading();
+      }
     });
   },
 

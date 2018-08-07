@@ -51,7 +51,7 @@ class Util {
       return false
     }
     return true;
-  }
+  };
 }
 export {
   Util

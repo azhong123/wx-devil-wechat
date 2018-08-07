@@ -46,55 +46,77 @@ Page({
     this._loadData();
   },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function(option) {
+    product.hideLoading();
+    this.dialog = this.selectComponent(".mydialog");
+  },
+
   _loadData: function() {
     /**
      * 获取商品详情信息
      */
-    product.getGoodsDetail(this.data.id, (res) => {
-      this.data.imgUrls = res.mainImgUrls;
-      goods = {
-        count: 1,
-        goodsId: res.goodsId,
-        goodsName: res.goodsName,
-        goodsPrice: res.goodsPrice,
-        goodsMinImg: res.goodsMinImg,
-        mainImgUrls: this.data.imgUrls,
-        totalMoney: res.goodsPrice,
+    product.getGoodsDetail(this.data.id, (event) => {
+      if (product.isSuccess(event)) {
+        var res = event.data.data;
+        this.data.imgUrls = res.mainImgUrls;
+        goods = {
+          count: 1,
+          goodsId: res.goodsId,
+          goodsName: res.goodsName,
+          goodsPrice: res.goodsPrice,
+          goodsMinImg: res.goodsMinImg,
+          mainImgUrls: this.data.imgUrls,
+          totalMoney: res.goodsPrice,
+        }
+        this.setData({
+          goods: goods,
+        });
       }
-      this.setData({
-        goods: goods,
-      });
+
     });
 
     /**
      * 获取商品详情图片
      */
-    product.getGoodsDetailImg(this.data.id, (res) => {
-      this.data.detailImg = res;
-      this.setData({
-        detailImg: this.data.detailImg,
-      });
+    product.getGoodsDetailImg(this.data.id, (event) => {
+      if (product.isSuccess(event)) {
+        var res = event.data.data;
+        this.data.detailImg = res;
+        this.setData({
+          detailImg: this.data.detailImg,
+        });
+      }
+
     });
 
     /**
      * 获取商品详情参数
      */
-    product.getGoodsParamItems(this.data.id, (res) => {
-      this.data.paramItems = res;
-      this.setData({
-        paramItems: this.data.paramItems,
-      });
+    product.getGoodsParamItems(this.data.id, (event) => {
+      if (product.isSuccess(event)) {
+        var res = event.data.data;
+        this.data.paramItems = res;
+        this.setData({
+          paramItems: this.data.paramItems,
+        });
+      }
     });
 
     /**
      * 获取当前用户的购物车数量
      */
-    cart.getCartCount((res) => {
-      this.data.cartTotalCounts = res.cartCount
-      console.log(res.cartCount)
-      this.setData({
-        cartTotalCounts: this.data.cartTotalCounts,
-      });
+    cart.getCartCount((event) => {
+      if (product.isSuccess(event)) {
+        var res = event.data.data;
+        this.data.cartTotalCounts = res.cartCount
+        console.log(res.cartCount)
+        this.setData({
+          cartTotalCounts: this.data.cartTotalCounts,
+        });
+      }
     });
 
   },
@@ -139,23 +161,24 @@ Page({
       goodsPrice: goods.totalMoney,
       goodsId: goods.goodsId
     }
-    cart.addCart(cartObj, (res) => {
-      wx.showToast({
-        title: '加入购物车成功！',
-        icon: 'success',
-        duration: 1500,
-      });
-      // 关闭规则选择页
-      this.closeDialog();
+    cart.addCart(cartObj, (event) => {
+      if (product.isSuccess(event)) {
+        var res = event.data.data;
+        this.dialog.show(event.data.message);
+        // 关闭规则选择页
+        this.closeDialog();
 
-      // 添加选择的规格及数量
-      this.addDetailSku(event);
+        // 添加选择的规格及数量
+        this.addDetailSku(event);
 
-      // 添加购买数量
-      this.data.cartTotalCounts = cartObj.goodsNum + this.data.cartTotalCounts
-      this.setData({
-        cartTotalCounts: this.data.cartTotalCounts,
-      });
+        // 添加购买数量
+        this.data.cartTotalCounts = cartObj.goodsNum + this.data.cartTotalCounts
+        cart.hideLoading();
+        this.setData({
+          cartTotalCounts: this.data.cartTotalCounts,
+        });
+        cart.hideLoading();
+      }
     });
   },
 

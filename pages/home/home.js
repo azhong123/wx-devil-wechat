@@ -23,6 +23,13 @@ Page({
   },
 
   /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function(option) {
+    home.hideLoading();
+  },
+
+  /**
    * 处理数据
    */
   _loadData: function() {
@@ -30,24 +37,33 @@ Page({
     var themeType = '0';
 
     // 获取 banner 数据
-    home.getBannerData(bannerType, (res) => {
-      this.setData({
-        'bannerArr': res
-      });
+    home.getBannerData(bannerType, (event) => {
+      if (home.isSuccess(event)) {
+        var res = event.data.data;
+        this.setData({
+          'bannerArr': res
+        });
+      }
     });
 
     // 获取 theme 数据
-    home.getThemeData(themeType, (res) => {
-      this.setData({
-        'themeArr': res
-      });
+    home.getThemeData(themeType, (event) => {
+      if (home.isSuccess(event)) {
+        var res = event.data.data;
+        this.setData({
+          'themeArr': res
+        });
+      }
     });
 
     // 获取 latest 最新上新商品
-    home.getLatestProducts((res) => {
-      this.setData({
-        'productArr': res
-      });
+    home.getLatestProducts((event) => {
+      if (home.isSuccess(event)) {
+        var res = event.data.data;
+        this.setData({
+          'productArr': res
+        });
+      }
     });
   },
   /**

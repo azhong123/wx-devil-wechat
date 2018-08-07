@@ -22,6 +22,14 @@ Page({
     this._loadData();
   },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function(option) {
+    theme.hideLoading();
+  },
+
+
   onReady: function() {
     wx.setNavigationBarTitle({
       title: this.data.name,
@@ -32,11 +40,15 @@ Page({
    * 获取主题详情
    */
   _loadData: function() {
-    theme.getThemeDetail(this.data.id, (res) => {
-      this.data.name = res.name;
-      this.setData({
-        "themeDetail": res
-      });
+    theme.getThemeDetail(this.data.id, (event) => {
+      if (theme.isSuccess(event)) {
+        var res = event.data.data;
+        this.data.name = res.name;
+        this.setData({
+          "themeDetail": res
+        });
+      }
+
     });
   },
 
