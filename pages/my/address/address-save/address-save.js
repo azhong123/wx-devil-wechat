@@ -46,6 +46,13 @@ Page({
   },
 
   /**
+   * 生命周期函数--监听页面加载
+   */
+  onShow: function(options) {
+    this.dialog = this.selectComponent(".mydialog");
+  },
+
+  /**
    * 加载数据
    */
   _loadDate: function() {
@@ -53,31 +60,34 @@ Page({
     /**
      * 获取城市地址列表
      */
-    addresssave.getChinaCitys((res) => {
-      this.data.cityList = res
-      this.setData({
-        cityList: this.data.cityList
-      })
+    addresssave.getChinaCitys((event) => {
+      if (addresssave.isSuccess(event)) {
+        this.data.cityList = event.data.data
+        this.setData({
+          cityList: this.data.cityList
+        })
+      }
+
     });
 
   },
 
-  formSubmit: function(e) {
-    var that = this;
-    var formData = e.detail.value;
-    console.log(formData)
-  },
-  formReset: function() {
-    console.log('form发生了reset事件');
-    this.modalTap2();
-  },
+  // formSubmit: function(e) {
+  //   var that = this;
+  //   var formData = e.detail.value;
+  //   console.log(formData)
+  // },
+  // formReset: function() {
+  //   console.log('form发生了reset事件');
+  //   this.modalTap2();
+  // },
 
 
   /**
    * 保存收货地址
    */
-  formSubmit: function(e) {
-    var params = e.detail.value;
+  formSubmit: function(event) {
+    var params = event.detail.value;
     var mobile = params.phone;
     var username = params.name;
     var addressHouse = params.address;
@@ -91,7 +101,13 @@ Page({
         addressCountry: this.data.addressData.country,
         addressHouse: addressHouse,
       }
-      addresssave.saveAddress(saveAddressObj);
+      addresssave.saveAddress(saveAddressObj, (event) => {
+        if (addresssave.isSuccess(event)) {
+          wx.redirectTo({
+            url: '../../../../pages/my/address/address-list/address-list',
+          })
+        }
+      });
     }
   },
 

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "添加收获地址"
+  "navigationBarTitleText": "添加收获地址",
+  "usingComponents": {
+    "component-tag-name": "../../../../components/toast/toast"
+  }
 }

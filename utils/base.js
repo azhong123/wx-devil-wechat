@@ -29,7 +29,7 @@ class Base {
         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUjK0MDUwNDe0NDE00o0O8vdxjXd08fX001EAs0ODXYNilXSUMhNLlKwMTY2NjQyNjU2MgQIpQL6OUl5ibiqqIUDFqRUFEMUWhhaGJsa1AAAAAP__.xSJJKE4063K4uiadN-IOFNpVDUvhMPwFUW50j__XRiU'
       },
       success: function(res) {
-        params.sCallback && params.sCallback(res.data.data);
+        params.sCallback && params.sCallback(res);
       },
       fail: function(err) {
         console.log(err);
@@ -44,7 +44,16 @@ class Base {
     return event.currentTarget.dataset[key];
   };
 
-  
+  /**
+   * 请求是否成功
+   */
+  isSuccess(event) {
+    if (event.data.code == 'K-000000') {
+      return true;
+    }
+    return false;
+  }
+
 }
 export {
   Base

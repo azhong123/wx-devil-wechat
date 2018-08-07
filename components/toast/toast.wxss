@@ -7,7 +7,7 @@
   font-size: 30rpx;
   text-align: center;
   position: fixed;
-  bottom:30px;
+  bottom:200px;
   opacity: 0.85;
   width:200px;
 }

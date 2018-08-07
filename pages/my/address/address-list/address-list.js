@@ -30,25 +30,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.dialog = this.selectComponent(".mydialog"); 
     this._loadData(options);
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    // 加载显示异常
+    this.dialog = this.selectComponent(".mydialog");
   },
 
   /**
    * 加载数据
    */
   _loadData: function() {
-    address.addressList((res) => {
-      // 添加姓氏
-      res.forEach((item) => {
-        item.family_name = item.customerName.substr(0, 1);
-      })
-      this.setData({
-        addressData: res
-      });
+    address.addressList((event) => {
+      if (address.isSuccess(event)) {
+        var res = event.data.data;
+        // 添加姓氏
+        res.forEach((item) => {
+          item.family_name = item.customerName.substr(0, 1);
+        })
+        this.setData({
+          addressData: res
+        });
+      }
+
     })
   },
-  diytoast: function () {
+  diytoast: function() {
     this.dialog.show("这是我的自定义弹窗");
   },
 
@@ -80,13 +91,13 @@ Page({
   /**
    * 保存收获地址
    */
-  saveaddress: function () {
+  saveaddress: function() {
     this.dialog.show("这是我的自定义弹窗");
     wx.navigateTo({
       url: '../../../../pages/my/address/address-save/address-save',
     })
   },
-  
 
-  
+
+
 })

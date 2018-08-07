@@ -1,10 +1,7 @@
 <!--pages/my/address/address-save/address-save.wxml-->
 <import src="../../../../pages/tpls/address/area_select.wxml" />
-<!-- <view class="container">
-  <view class="select" bindtap="choosearea">点击我</view>
-  <view class="value" wx:if="{{addressData.resideprovince}}">{{addressData.resideprovince}}-{{addressData.residecity}}-{{addressData.country}}</view>
-</view> -->
 <template is="area_select" data="{{showArea,resideprovince,residecity,country,currentTab,curr_pro,curr_cit,curr_cou}}" />
+<component-tag-name class='mydialog'></component-tag-name>
 <view class="container">
   <form bindsubmit="formSubmit" bindreset="formReset">
     <view class="section">
