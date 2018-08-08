@@ -19,6 +19,7 @@ Page({
     addressData: {},
 
     showArea: false,
+    addressType: null,
     currentTab: 1,
     country: [],
     residecity: [],
@@ -27,22 +28,20 @@ Page({
     curr_pro: '',
     curr_cit: '',
     curr_cou: '',
-
-    // text:"这是一个页面"
-    array: ["中国", "美国", "巴西", "日本"],
-    toast1Hidden: true,
-    modalHidden: true,
-    modalHidden2: true,
-    notice_str: '',
-    index: 0
-
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var type = options.type;
+    this.setData({
+      addressType: type
+    });
     this._loadDate();
+    if (type == 'update') {
+      this._loadUpdateDate(options);
+    }
   },
 
   /**
@@ -54,7 +53,7 @@ Page({
   },
 
   /**
-   * 加载数据
+   * 加载保存的收货地址信息
    */
   _loadDate: function() {
 
@@ -73,16 +72,25 @@ Page({
 
   },
 
-  // formSubmit: function(e) {
-  //   var that = this;
-  //   var formData = e.detail.value;
-  //   console.log(formData)
-  // },
-  // formReset: function() {
-  //   console.log('form发生了reset事件');
-  //   this.modalTap2();
-  // },
-
+  /**
+   * 加载更新收货地址信息
+   */
+  _loadUpdateDate: function(options) {
+    var updateAddressObj = JSON.parse(options.reqCart);
+    console.log(updateAddressObj);
+    var addressObj = {
+      addressId: updateAddressObj.addressId,
+      customerName: updateAddressObj.customerName,
+      customerMobile: updateAddressObj.customerMobile,
+      addressHouse: updateAddressObj.addressHouse,
+      resideprovince: updateAddressObj.addressProvince,
+      residecity: updateAddressObj.addressCity,
+      country: updateAddressObj.addressCountry
+    }
+    this.setData({
+      addressData: addressObj
+    });
+  },
 
   /**
    * 保存收货地址
@@ -92,8 +100,16 @@ Page({
     var mobile = params.phone;
     var username = params.name;
     var addressHouse = params.address;
+    var addressId = params.addressId;
+    console.log("dhou"+addressId);
     // 验证用户名和手机号
     if (util.checkUserName(username) && util.checkMobile(mobile)) {
+      if(addressId != ""){
+          console.log("dsaf")
+      }
+      if(addressId != null){
+        console.log("dsafddd")
+      }
       var saveAddressObj = {
         customerName: username,
         customerMobile: mobile,

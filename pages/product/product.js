@@ -112,7 +112,6 @@ Page({
       if (product.isSuccess(event)) {
         var res = event.data.data;
         this.data.cartTotalCounts = res.cartCount
-        console.log(res.cartCount)
         this.setData({
           cartTotalCounts: this.data.cartTotalCounts,
         });
@@ -161,10 +160,9 @@ Page({
       goodsPrice: goods.totalMoney,
       goodsId: goods.goodsId
     }
-    cart.addCart(cartObj, (event) => {
-      if (product.isSuccess(event)) {
-        var res = event.data.data;
-        this.dialog.show(event.data.message);
+    cart.addCart(cartObj, (revent) => {
+      if (product.isSuccess(revent)) {
+        this.dialog.show(revent.data.message);
         // 关闭规则选择页
         this.closeDialog();
 
@@ -186,7 +184,7 @@ Page({
    * 图片放大预览
    */
   previewImage: function(res) {
-    var imgSrc = product.getDataSet(res, "src");
+    var imgSrc = product.getdataset(res, "src");
     console.log(imgSrc);
     wx.previewImage({
       current: imgSrc, // 当前显示图片的http链接  

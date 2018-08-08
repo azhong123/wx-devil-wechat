@@ -27,7 +27,7 @@
                 </view>
               </view>
             </view>
-            <view class="contact-icon" catchtap="updateaddress">
+            <view class="contact-icon" catchtap="updateaddress" data-index='{{index}}'>
               <image src="../../../../imgs/icon/address@edit.png"></image>
             </view>
           </view>
@@ -52,7 +52,5 @@
     </block>
   </view>
 </view>
-
- <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="diytoast"> 自定义弹窗 </button> -->
 
  <component-tag-name class='mydialog' ></component-tag-name>

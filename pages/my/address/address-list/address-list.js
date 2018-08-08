@@ -84,8 +84,11 @@ Page({
    * 编辑收货地址
    */
   updateaddress: function(event) {
+    var index = address.getDataSet(event, "index");
+    var reqCart = this.data.addressData[index];
+
     wx.navigateTo({
-      url: '../../../../pages/my/address/address-detail/address-detail',
+      url: '../../../../pages/my/address/address-save/address-save?reqCart=' + JSON.stringify(reqCart) + '&type=update',
     })
   },
 
@@ -95,7 +98,7 @@ Page({
   saveaddress: function() {
     this.dialog.show("这是我的自定义弹窗");
     wx.navigateTo({
-      url: '../../../../pages/my/address/address-save/address-save',
+      url: '../../../../pages/my/address/address-save/address-save?type=save',
     })
   },
 

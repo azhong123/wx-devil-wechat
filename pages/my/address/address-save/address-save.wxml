@@ -5,28 +5,39 @@
 <view class="container">
   <form bindsubmit="formSubmit" bindreset="formReset">
     <view class="section">
-      <text decode="{{true}}" space="{{true}}" class="section-title">收货人&nbsp;&nbsp;&nbsp;&nbsp;</text>{{shengArr[shengIndex]}}
-      <input type="text" name="name" class="section-value" autofocus="autofocus" />
+      <text decode="{{true}}" space="{{true}}" class="section-title">收货人&nbsp;&nbsp;&nbsp;&nbsp;{{addressData.customerName}}</text>
+      <input type="text" name="name" class="section-value" autofocus="autofocus" value="{{addressData.customerName}}" />
+      <input type='text' style="display:none" name="addressId" value="{{addressData.addressId}}"/>
     </view>
     <view class="section">
-      <text decode="{{true}}" space="{{true}}" class="section-title">手机号码&nbsp;&nbsp;&nbsp;&nbsp;</text>{{shengArr[shengIndex]}}
-      <input type="text" name="phone" class="section-value" />
+      <text decode="{{true}}" space="{{true}}" class="section-title">手机号码&nbsp;&nbsp;&nbsp;&nbsp;</text>
+      <input type="text" name="phone" class="section-value" value="{{addressData.addressId}}"/>
     </view>
     <view class="section" bindtap="choosearea">
       所在地区
-      <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;</text>{{shengArr[shengIndex]}}
+      <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>{{shengArr[shengIndex]}}
       <view class="section-city" wx:if="{{addressData.resideprovince}}">{{addressData.resideprovince}}{{addressData.residecity}}{{addressData.country}}</view>
     </view>
     <view class="section">
-      <input type="text" class="section-value" name="address" placeholder="详细地址" />
+      <input type="text" class="section-value" name="address" placeholder="详细地址" value="{{addressData.addressHouse}}" />
     </view>
 
     <view class="address-nav">
+      <block wx:if="{{addressType == save}}">
+        <view class="nav-but">
+
+          <button formType="submit" class="button-save-address">
+            <text>保存地址</text>
+          </button>
+        </view>
+      </block>
+      <block wx:else>
       <view class="nav-but">
-        <button formType="submit" class="button-save-address">
-          <text>保存地址</text>
-        </button>
-      </view>
+          <button formType="submit" class="button-save-address">
+            <text>修改保存</text>
+          </button>
+        </view>
+      </block>
     </view>
   </form>
 </view>
